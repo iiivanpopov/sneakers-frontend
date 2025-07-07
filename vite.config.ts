@@ -1,7 +1,23 @@
-import { defineConfig } from 'vite'
+import path from 'node:path'
+import { tanstackRouter } from '@tanstack/router-plugin/vite'
 import react from '@vitejs/plugin-react-swc'
+import { defineConfig } from 'vite'
 
-// https://vite.dev/config/
 export default defineConfig({
-  plugins: [react()],
+  plugins: [
+    tanstackRouter({
+      target: 'react',
+      autoCodeSplitting: true,
+      routesDirectory: './src/app/routes',
+    }),
+    react(),
+  ],
+  resolve: {
+    alias: {
+      '@/app': path.resolve(__dirname, 'src/app'),
+      '@/pages': path.resolve(__dirname, 'src/pages'),
+      '@/shared': path.resolve(__dirname, 'src/shared'),
+      '@': path.resolve(__dirname, 'src'),
+    },
+  },
 })

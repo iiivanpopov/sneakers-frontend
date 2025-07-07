@@ -1,0 +1,10 @@
+body {
+	font-family: "Noto Sans", sans-serif;
+	background-color: var(--bg-primary);
+}
+
+.header,
+.container  {
+	max-width: 1440px;
+	margin: 0 auto;
+}
