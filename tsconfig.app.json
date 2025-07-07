@@ -16,6 +16,7 @@
       "@/app/*": ["src/app/*"],
       "@/pages/*": ["src/pages/*"],
       "@/shared/*": ["src/shared/*"],
+      "@/assets/*": ["src/assets/*"],
       "@/*": ["src/*"]
     },
     "allowImportingTsExtensions": true,

@@ -1,7 +1,3 @@
 export function AuthPage() {
-  return (
-    <div>
-      Auth
-    </div>
-  )
+  return <div>Auth</div>
 }

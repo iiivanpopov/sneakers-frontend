@@ -5,5 +5,5 @@ import { ROUTES } from '@/shared/constants/routes'
 
 export const Route = createLazyFileRoute(ROUTES.AUTH)({
   component: AuthPage,
-  pendingComponent: AuthLoading,
+  pendingComponent: AuthLoading
 })

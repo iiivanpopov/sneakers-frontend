@@ -5,5 +5,5 @@ import { ROUTES } from '@/shared/constants/routes'
 
 export const Route = createLazyFileRoute(ROUTES.ORDER)({
   component: OrderPage,
-  pendingComponent: OrderLoading,
+  pendingComponent: OrderLoading
 })

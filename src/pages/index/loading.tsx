@@ -1,7 +1,3 @@
 export function IndexLoading() {
-  return (
-    <div>
-      Loading
-    </div>
-  )
+  return <div>Loading</div>
 }

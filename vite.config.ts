@@ -8,16 +8,17 @@ export default defineConfig({
     tanstackRouter({
       target: 'react',
       autoCodeSplitting: true,
-      routesDirectory: './src/app/routes',
+      routesDirectory: './src/app/routes'
     }),
-    react(),
+    react()
   ],
   resolve: {
     alias: {
       '@/app': path.resolve(__dirname, 'src/app'),
       '@/pages': path.resolve(__dirname, 'src/pages'),
       '@/shared': path.resolve(__dirname, 'src/shared'),
-      '@': path.resolve(__dirname, 'src'),
-    },
-  },
+      '@/assets': path.resolve(__dirname, 'src/assets'),
+      '@': path.resolve(__dirname, 'src')
+    }
+  }
 })

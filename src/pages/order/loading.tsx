@@ -1,7 +1,3 @@
 export function OrderLoading() {
-  return (
-    <div>
-      Loading
-    </div>
-  )
+  return <div>Loading</div>
 }

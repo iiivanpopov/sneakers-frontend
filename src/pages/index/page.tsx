@@ -1,7 +1,3 @@
 export function IndexPage() {
-  return (
-    <div>
-      Index
-    </div>
-  )
+  return <div>Index page</div>
 }

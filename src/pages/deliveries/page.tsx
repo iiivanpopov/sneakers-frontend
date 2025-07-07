@@ -1,7 +1,3 @@
 export function DeliveriesPage() {
-  return (
-    <div>
-      Deliveries
-    </div>
-  )
+  return <div>Deliveries</div>
 }

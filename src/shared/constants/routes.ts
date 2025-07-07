@@ -5,5 +5,5 @@ export const ROUTES = {
   PROFILE: '/profile',
   ORDERS: '/orders',
   ORDER: '/order',
-  DELIVERIES: '/deliveries',
+  DELIVERIES: '/deliveries'
 } as const

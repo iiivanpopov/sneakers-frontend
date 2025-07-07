@@ -1,0 +1,64 @@
+.label {
+  font-size: 14px;
+  color: var(--text-primary);
+  user-select: none;
+  cursor: default;
+}
+
+.value {
+  border: 1px solid var(--text-quaternary);
+  border-radius: 8px;
+  font-size: 16px;
+  outline: none;
+  padding: 8px 8px 8px 12px;
+  background: var(--bg-primary);
+  height: 40px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  color: var(--text-secondary);
+  width: 320px;
+  user-select: none;
+}
+
+.dropdown {
+  display: flex;
+  flex-direction: column;
+  row-gap: 6px;
+  position: relative;
+  width: max-content;
+}
+
+.items {
+  position: absolute;
+  top: 70px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 15px;
+  font-size: 16px;
+  background: var(--bg-primary);
+  border-radius: 8px;
+  z-index: 10;
+  min-width: 100%;
+}
+
+.item {
+  padding: 5px;
+  color: var(--text-secondary);
+  border-radius: 4px;
+  user-select: none;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.item:hover,
+.item.active {
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+}
+
+.opened {
+  border: 1px solid transparent;
+  outline: 2px solid var(--brand);
+}

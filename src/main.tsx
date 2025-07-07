@@ -14,11 +14,13 @@ export function init() {
 
   const queryClient = new QueryClient()
   const providersProps: Omit<ProvidersProps, 'children'> = {
-    query: { client: queryClient },
+    query: { client: queryClient }
   }
 
   root.render(
-    <Providers {...providersProps}><App /></Providers>,
+    <Providers {...providersProps}>
+      <App />
+    </Providers>
   )
 }
 
