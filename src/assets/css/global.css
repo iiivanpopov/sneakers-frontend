@@ -7,5 +7,139 @@
 body {
   font-family: 'Noto Sans', sans-serif;
   background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 64px;
+  z-index: 100;
+  background: var(--bg-primary);
+  display: flex;
+  justify-content: space-between;
+  padding: 0 50px;
+  align-items: center;
+}
+
+main {
+  padding-top: 64px;
   min-height: 100vh;
+}
+
+a {
+  color: var(--text-primary);
+  text-decoration: none;
+}
+
+.header__title,
+.footer__title {
+  margin: 0;
+  font-size: 32px;
+  font-weight: 400;
+}
+
+.header__actions {
+  display: flex;
+  width: 350px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header__search,
+.header__favored,
+.header__cart {
+  outline: none;
+  border: none;
+  background: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header__login {
+  text-align: center;
+  border-radius: 15px;
+  border: 1px solid var(--text-primary);
+  padding: 5px 30px;
+  transition: color 0.2s ease-in-out;
+
+  &:hover {
+    color: var(--text-secondary);
+  }
+}
+
+.header__menu {
+  background: none;
+  text-align: center;
+  border-radius: 15px;
+  border: 1px solid var(--text-primary);
+  outline: none;
+  padding: 5px 15px;
+  transition: color 0.2s ease-in-out;
+  cursor: pointer;
+
+  &:hover {
+    color: var(--text-secondary);
+    background: none;
+  }
+}
+
+.footer {
+  background: #000;
+  padding: 20px 50px;
+}
+
+.footer__title {
+  color: var(--text-invert);
+}
+
+.footer_information {
+  width: 100%;
+  display: flex;
+  justify-content: end;
+}
+
+.information__section {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+}
+
+.heading {
+  min-width: 350px;
+  background: var(--bg-primary);
+  color: #000;
+  padding: 5px 20px;
+  border-radius: 6px;
+  border: 1px solid var(--text-invert);
+  font-weight: 600;
+}
+
+.information {
+  min-width: 350px;
+  background: #000;
+  color: var(--text-invert);
+  padding: 5px 20px;
+  border-radius: 6px;
+  border: 1px solid var(--text-invert);
+  font-weight: 400;
+}
+
+.multi-information {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+
+  > a {
+    color: var(--text-invert);
+    width: 100%;
+    padding: 5px 15px;
+    border-radius: 6px;
+    border: 1px solid var(--text-invert);
+    font-weight: 400;
+  }
 }

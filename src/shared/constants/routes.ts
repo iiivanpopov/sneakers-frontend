@@ -5,5 +5,7 @@ export const ROUTES = {
   PROFILE: '/profile',
   ORDERS: '/orders',
   ORDER: '/order',
-  DELIVERIES: '/deliveries'
+  DELIVERIES: '/deliveries',
+  FAVORED: '/favored',
+  CART: '/cart'
 } as const
