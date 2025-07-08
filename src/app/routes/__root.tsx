@@ -23,7 +23,6 @@ export const Route = createRootRoute({
           <Link to={ROUTES.CART} className="header__cart">
             <CartIcon />
           </Link>
-
           <Link to={ROUTES.AUTH} className="header__login">
             Log In
           </Link>
