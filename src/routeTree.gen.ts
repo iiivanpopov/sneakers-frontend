@@ -11,6 +11,7 @@
 import { createFileRoute } from '@tanstack/react-router'
 
 import { Route as rootRouteImport } from './app/routes/__root'
+import { Route as IndexRouteImport } from './app/routes/index'
 
 const ProfileLazyRouteImport = createFileRoute('/profile')()
 const OrdersLazyRouteImport = createFileRoute('/orders')()
@@ -18,7 +19,6 @@ const OrderLazyRouteImport = createFileRoute('/order')()
 const DeliveriesLazyRouteImport = createFileRoute('/deliveries')()
 const CatalogLazyRouteImport = createFileRoute('/catalog')()
 const AuthLazyRouteImport = createFileRoute('/auth')()
-const IndexLazyRouteImport = createFileRoute('/')()
 
 const ProfileLazyRoute = ProfileLazyRouteImport.update({
   id: '/profile',
@@ -52,14 +52,14 @@ const AuthLazyRoute = AuthLazyRouteImport.update({
   path: '/auth',
   getParentRoute: () => rootRouteImport,
 } as any).lazy(() => import('./app/routes/auth.lazy').then((d) => d.Route))
-const IndexLazyRoute = IndexLazyRouteImport.update({
+const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
-} as any).lazy(() => import('./app/routes/index.lazy').then((d) => d.Route))
+} as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexLazyRoute
+  '/': typeof IndexRoute
   '/auth': typeof AuthLazyRoute
   '/catalog': typeof CatalogLazyRoute
   '/deliveries': typeof DeliveriesLazyRoute
@@ -68,7 +68,7 @@ export interface FileRoutesByFullPath {
   '/profile': typeof ProfileLazyRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof IndexLazyRoute
+  '/': typeof IndexRoute
   '/auth': typeof AuthLazyRoute
   '/catalog': typeof CatalogLazyRoute
   '/deliveries': typeof DeliveriesLazyRoute
@@ -78,7 +78,7 @@ export interface FileRoutesByTo {
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/': typeof IndexLazyRoute
+  '/': typeof IndexRoute
   '/auth': typeof AuthLazyRoute
   '/catalog': typeof CatalogLazyRoute
   '/deliveries': typeof DeliveriesLazyRoute
@@ -117,7 +117,7 @@ export interface FileRouteTypes {
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  IndexLazyRoute: typeof IndexLazyRoute
+  IndexRoute: typeof IndexRoute
   AuthLazyRoute: typeof AuthLazyRoute
   CatalogLazyRoute: typeof CatalogLazyRoute
   DeliveriesLazyRoute: typeof DeliveriesLazyRoute
@@ -174,14 +174,14 @@ declare module '@tanstack/react-router' {
       id: '/'
       path: '/'
       fullPath: '/'
-      preLoaderRoute: typeof IndexLazyRouteImport
+      preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
-  IndexLazyRoute: IndexLazyRoute,
+  IndexRoute: IndexRoute,
   AuthLazyRoute: AuthLazyRoute,
   CatalogLazyRoute: CatalogLazyRoute,
   DeliveriesLazyRoute: DeliveriesLazyRoute,
