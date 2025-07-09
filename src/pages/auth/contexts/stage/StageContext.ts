@@ -1,6 +1,6 @@
 import { createContext } from 'react'
 
-export type Stage = 'confirmOtp' | 'signIn' | 'signUp'
+export type Stage = 'confirmOtp' | 'signIn'
 
 export interface StageContextProps {
   stage: Stage

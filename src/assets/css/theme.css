@@ -1,8 +1,8 @@
 :root {
   --bg-primary: #fff;
-  --bg-secondary: #e1dfeb;
-  --bg-secondary-rgb: 225, 223, 235;
-  --bg-tertiary: #dfdeeb;
+  --bg-secondary-rgb: 240, 238, 244;
+  --bg-secondary: #f0eef4;
+  --bg-tertiary: #e7e7ee;
   --text-invert: #fff;
   --text-primary: #141c24;
   --text-secondary: #262f3b;

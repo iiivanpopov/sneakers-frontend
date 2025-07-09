@@ -16,6 +16,11 @@
   &:focus {
     border-color: var(--text-secondary);
   }
+
+  &:disabled {
+    color: var(--text-tertiary);
+    border-color: var(--text-tertiary);
+  }
 }
 
 .input_error {

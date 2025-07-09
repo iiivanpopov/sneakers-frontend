@@ -1,17 +1,16 @@
 import type { Stage } from '../../contexts/stage'
+import { EmailProvider } from '../../contexts/email'
 import { useStage } from '../../contexts/stage'
 import { ConfirmOtpForm } from '../ConfirmOtpForm'
 import { SignInForm } from '../SignInForm'
-import { SignUpForm } from '../SignUpForm'
 
 const component: Record<Stage, React.ReactNode> = {
   confirmOtp: <ConfirmOtpForm />,
-  signIn: <SignInForm />,
-  signUp: <SignUpForm />
+  signIn: <SignInForm />
 }
 
 export function FormContainer() {
   const { stage } = useStage()
 
-  return component[stage]
+  return <EmailProvider>{component[stage]}</EmailProvider>
 }

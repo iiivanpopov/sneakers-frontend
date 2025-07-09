@@ -1,4 +1,5 @@
 import type { QueryProviderProps } from '@/shared/contexts/query'
+import { Toaster } from 'sonner'
 import { QueryProvider } from '@/shared/contexts/query'
 
 export interface ProvidersProps {
@@ -7,5 +8,10 @@ export interface ProvidersProps {
 }
 
 export function Providers({ children, query }: ProvidersProps) {
-  return <QueryProvider {...query}>{children}</QueryProvider>
+  return (
+    <QueryProvider {...query}>
+      <Toaster />
+      {children}
+    </QueryProvider>
+  )
 }

@@ -1,4 +1,5 @@
 import clsx from 'clsx'
+import { memo } from 'react'
 import styles from './Button.module.css'
 
 type ButtonProps<T extends React.ElementType = 'button'> = {
@@ -6,20 +7,22 @@ type ButtonProps<T extends React.ElementType = 'button'> = {
   tag?: T
 } & React.ComponentPropsWithRef<T>
 
-export function Button<T extends React.ElementType = 'button'>({
-  children,
-  variant = 'contained',
-  tag,
-  className,
-  ...props
-}: ButtonProps<T>) {
-  const Component = tag || 'button'
-  return (
-    <Component
-      className={clsx(styles.button, styles[variant], className)}
-      {...props}
-    >
-      {children}
-    </Component>
-  )
-}
+export const Button = memo(
+  <T extends React.ElementType = 'button'>({
+    children,
+    variant = 'contained',
+    tag,
+    className,
+    ...props
+  }: ButtonProps<T>) => {
+    const Component = tag || 'button'
+    return (
+      <Component
+        className={clsx(styles.button, styles[variant], className)}
+        {...props}
+      >
+        {children}
+      </Component>
+    )
+  }
+)
