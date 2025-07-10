@@ -7,5 +7,6 @@ export const ROUTES = {
   ORDER: '/order',
   DELIVERIES: '/deliveries',
   FAVORED: '/favored',
-  CART: '/cart'
+  CART: '/cart',
+  ABOUT: '/about'
 } as const

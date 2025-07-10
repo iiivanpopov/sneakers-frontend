@@ -1,6 +1,6 @@
 import type { Stage } from './StageContext'
 
-import React, { useMemo, useState } from 'react'
+import { useMemo, useState } from 'react'
 
 import { StageContext } from './StageContext'
 

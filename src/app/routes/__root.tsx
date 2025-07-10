@@ -1,15 +1,30 @@
 import { createRootRoute, Link, Outlet } from '@tanstack/react-router'
-import {
-  ShoppingBasket as CartIcon,
-  Heart as HeartIcon,
-  Search as SearchIcon
-} from 'lucide-react'
+import { ShoppingBasket as CartIcon, HeartIcon, SearchIcon } from 'lucide-react'
 import { ROUTES } from '@/shared/constants/routes'
+import { useSidebar } from '@/shared/contexts/sidebar/useSidebar'
+import { Sidebar } from '@/shared/ui/Sidebar'
 
 export const Route = createRootRoute({
-  component: () => (
+  component: RootComponent
+})
+
+function RootComponent() {
+  const { setIsOpen } = useSidebar()
+
+  return (
     <>
-      <header className="header">
+      <Sidebar />
+      <div className="free-shipping">
+        <span>free shipping on all intl. orders over $50</span>
+        <span>free shipping on all intl. orders over $50</span>
+        <span>free shipping on all intl. orders over $50</span>
+        <span>free shipping on all intl. orders over $50</span>
+        <span>free shipping on all intl. orders over $50</span>
+        <span>free shipping on all intl. orders over $50</span>
+        <span>free shipping on all intl. orders over $50</span>
+        <span>free shipping on all intl. orders over $50</span>
+      </div>
+      <header className="header" id="header">
         <Link to={ROUTES.INDEX} className="header__title">
           Sneakers.
         </Link>
@@ -24,9 +39,14 @@ export const Route = createRootRoute({
             <CartIcon />
           </Link>
           <Link to={ROUTES.AUTH} className="header__login">
-            Log In
+            Sign In
           </Link>
-          <button type="button" className="header__menu">
+          <button
+            type="button"
+            id="header__menu"
+            onClick={() => setIsOpen(true)}
+            className="header__menu"
+          >
             Menu
           </button>
         </div>
@@ -46,13 +66,19 @@ export const Route = createRootRoute({
             <div className="information">500 Terry Francine St.SA, CA 9415</div>
             <div className="heading">SOCIAL MEDIA</div>
             <div className="multi-information">
-              <Link to="https://www.instagram.com/">INST</Link>
-              <Link to="https://www.facebook.com/">FCB</Link>
-              <Link to="https://www.tiktok.com/">TKTK</Link>
+              <Link target="_blank" to="https://www.instagram.com/">
+                INST
+              </Link>
+              <Link target="_blank" to="https://www.facebook.com/">
+                FCB
+              </Link>
+              <Link target="_blank" to="https://www.tiktok.com/">
+                TKTK
+              </Link>
             </div>
           </div>
         </section>
       </footer>
     </>
   )
-})
+}

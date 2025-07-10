@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react'
+import { useMemo, useState } from 'react'
 import { LOCAL_STORAGE } from '@/shared/constants/localStorage'
 import { EmailContext } from './EmailContext'
 
