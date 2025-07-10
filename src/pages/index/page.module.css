@@ -1,24 +1,24 @@
 .landing_section {
   background-image: url('../../assets/img/sneaker.webp');
-  height: 52.5rem; /* 840px */
+  height: 52rem;
   width: 100%;
   background-repeat: no-repeat;
   background-position: 50% 70%;
-  padding: 0.75rem 3.25rem; /* 10px 50px */
+  padding: 0.75rem 3.25rem;
   display: flex;
   flex-direction: column;
   position: relative;
 }
 
 .title {
-  font-size: 5.625rem; /* 90px */
+  font-size: 5.625rem;
   color: var(--text-primary);
   font-weight: 700;
 }
 
 .description {
   color: var(--text-primary);
-  font-size: 1.25rem; /* 20px */
+  font-size: 1.25rem;
   font-weight: 400;
 }
 
@@ -46,9 +46,9 @@
 
 .sneaker_card {
   position: absolute;
-  right: 3.25rem; /* 52px */
-  bottom: 2.5rem; /* 40px */
-  width: 34.375rem; /* 550px */
+  right: 3.25rem;
+  bottom: 2.5rem;
+  width: 34.375rem;
   display: flex;
   background-color: rgb(var(--bg-secondary-rgb), 0.5);
   backdrop-filter: blur(15px);
@@ -71,8 +71,8 @@
 
 .sneaker_image_wrapper {
   position: relative;
-  width: 21.875rem; /* 350px */
-  height: 16.25rem; /* 260px */
+  width: 21.875rem;
+  height: 16.25rem;
   background-color: rgb(var(--bg-secondary-rgb), 0.5);
   display: flex;
   justify-content: center;
@@ -81,7 +81,7 @@
 }
 
 .sneaker_image {
-  width: 12.5rem; /* 200px */
+  width: 12.5rem;
   object-fit: contain;
   user-select: none;
 }

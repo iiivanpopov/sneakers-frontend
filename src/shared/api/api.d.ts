@@ -54,3 +54,87 @@ interface SignInDto {
   email: string
   code: number
 }
+
+interface GetSneakersDto {
+  limit?: string
+  offset?: string
+  brandName: string
+  hasDiscount: string
+  minPrice: string
+  maxPrice: string
+}
+
+interface SneakerItem {
+  id: string
+  name: string
+  slug: string
+  description: string
+  price: number
+  images: string[]
+  brandName: string
+  views: number
+  purchases: number
+  finalPrice: number
+  hasActiveDiscount: boolean
+  discountSavings?: number
+}
+
+interface GetSneakersResponse extends BaseResponse {
+  data: SneakerItem[]
+}
+
+interface SearchSneakersDto {
+  q: string
+  limit?: string
+  offset?: string
+}
+
+interface SearchSneakersResponse extends BaseResponse {
+  data: SneakerItem[]
+}
+
+interface GetPopularSneakersDto {
+  limit?: string
+  offset?: string
+}
+
+interface GetPopularSneakersResponse extends BaseResponse {
+  data: SneakerItem[]
+}
+
+interface SneakerBrandItem {
+  id: string
+  name: string
+  logo: string | null
+  createdAt: string
+  updatedAt: string
+}
+
+interface GetSneakerBrandsResponse extends BaseResponse {
+  data: SneakerBrandItem[]
+}
+
+interface GetSneakerDto {
+  slug: string
+}
+
+interface GetSneakerResponse extends BaseResponse {
+  data: SneakerItem
+}
+
+interface GetSneakerStockDto {
+  slug: string
+}
+
+interface StockItem {
+  id: string
+  sneakerId: string
+  size: number
+  quantity: number
+  createdAt: string
+  updatedAt: string
+}
+
+interface GetSneakerStockResponse extends BaseResponse {
+  data: StockItem[]
+}

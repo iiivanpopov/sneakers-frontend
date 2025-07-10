@@ -13,6 +13,7 @@ const LINKS = [
   { label: 'HOME', to: ROUTES.INDEX },
   { label: 'ABOUT', to: ROUTES.ABOUT },
   { label: 'SHOP', to: ROUTES.CATALOG },
+  { label: 'PROFILE', to: ROUTES.PROFILE },
   { label: 'CART', to: ROUTES.CART },
   { label: 'FAVORED', to: ROUTES.FAVORED },
   { label: 'ORDERS', to: ROUTES.ORDERS },

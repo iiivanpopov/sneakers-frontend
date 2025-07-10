@@ -7,9 +7,16 @@ type ButtonProps = {
 } & React.ComponentPropsWithRef<'button'>
 
 export const Button = memo(
-  ({ children, variant = 'contained', className, ...props }: ButtonProps) => {
+  ({
+    children,
+    type,
+    variant = 'contained',
+    className,
+    ...props
+  }: ButtonProps) => {
     return (
       <button
+        type={type}
         className={clsx(styles.button, styles[variant], className)}
         {...props}
       >

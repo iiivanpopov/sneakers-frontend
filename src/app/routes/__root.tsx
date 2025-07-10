@@ -24,9 +24,9 @@ function RootComponent() {
         <span>free shipping on all intl. orders over $50</span>
         <span>free shipping on all intl. orders over $50</span>
       </div>
-      <header className="header" id="header">
+      <header className="header">
         <Link to={ROUTES.INDEX} className="header__title">
-          Sneakers.
+          Ryst.
         </Link>
         <div className="header__actions">
           <button type="button" className="header__search">
@@ -56,7 +56,7 @@ function RootComponent() {
       </main>
       <footer className="footer">
         <Link to={ROUTES.INDEX} className="footer__title">
-          Sneakers.
+          Ryst.
         </Link>
         <section className="footer_information">
           <div className="information__section">
