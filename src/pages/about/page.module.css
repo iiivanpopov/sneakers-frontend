@@ -1,0 +1,104 @@
+.about_section {
+  padding: 0.75rem 3.25rem;
+  background-image: url('../../assets/img/sneaker2.webp');
+  min-height: 52rem;
+  width: 100%;
+  background-position: clamp(27%, 10vw, 100%) 70%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.title {
+  font-size: clamp(3rem, 4.5vw, 5.5rem);
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+.about_card_wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.about_card {
+  background-color: rgb(0 0 0 / 40%);
+  padding: 20px 30px;
+  height: fit-content;
+  backdrop-filter: blur(10px);
+  border-radius: 5px;
+  width: clamp(20rem, 50vw, 27rem);
+  margin-bottom: 2.5rem;
+}
+
+.about_card__description {
+  color: var(--text-invert);
+}
+
+.advantages {
+  padding: 0.75rem 3.25rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.advantages_list {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.advantage {
+  width: clamp(200px, 30vw, 550px);
+  height: clamp(200px, 30vw, 550px);
+  position: relative;
+  aspect-ratio: 1;
+}
+
+.advantage_image {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  user-select: none;
+}
+
+.advantage_name {
+  position: absolute;
+  right: 20px;
+  backdrop-filter: blur(10px);
+  border-radius: 5px;
+  bottom: 20px;
+  background: rgb(255 255 255 / 40%);
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  padding: 10px 20px;
+}
+
+@media (width <= 900px) {
+  .title {
+    text-align: center;
+  }
+
+  .advantages_list {
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+  }
+
+  .about_card_wrapper {
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  .about_card {
+    width: 90%;
+    padding: 15px 20px;
+  }
+}

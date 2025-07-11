@@ -10,12 +10,7 @@ type TypographyProps<T extends React.ElementType = 'h1'> = {
 } & React.ComponentProps<T>
 
 export const Typography = memo(
-  <T extends React.ElementType = 'h1'>({
-    tag = 'h1',
-    variant = 'title',
-    className,
-    children
-  }: TypographyProps<T>) => {
+  ({ tag = 'h1', variant = 'title', className, children }: TypographyProps) => {
     const Component = tag
 
     return (

@@ -4,6 +4,7 @@
   width: 100%;
   background-repeat: no-repeat;
   background-position: 50% 70%;
+  background-size: cover;
   padding: 0.75rem 3.25rem;
   display: flex;
   flex-direction: column;
