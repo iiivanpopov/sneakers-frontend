@@ -32,7 +32,7 @@ export function Toast({ message, className, duration, toastId }: ToastProps) {
   return (
     <m.div
       initial={{
-        translateY: '-200%',
+        translateY: '-100%',
         opacity: 0,
         scale: 0.9
       }}
@@ -42,7 +42,7 @@ export function Toast({ message, className, duration, toastId }: ToastProps) {
         scale: isDismissing ? 0.9 : 1
       }}
       transition={{
-        duration: 0.3,
+        duration: 0.2,
         ease: 'easeOut',
         opacity: { duration: 0.2 },
         scale: { duration: 0.2 }

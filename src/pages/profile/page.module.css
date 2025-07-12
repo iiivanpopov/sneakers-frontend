@@ -1,0 +1,74 @@
+.profile {
+  background-image: url('/sneaker3.webp');
+  height: 52rem;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-position: 80% 70%;
+  background-size: cover;
+  padding: 0.75rem 3.25rem;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.edit-form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  max-width: 1200px;
+  gap: 1.5rem;
+  margin: 0 auto;
+}
+
+.inputs-group {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background: rgb(var(--bg-secondary-rgb), 0.5);
+  backdrop-filter: blur(10px);
+  height: fit-content;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.input {
+  background: rgb(var(--bg-secondary-rgb), 0.2);
+  border-color: rgb(var(--bg-secondary-rgb), 0.3);
+
+  &:focus {
+    border-color: rgb(var(--bg-secondary-rgb), 0.6);
+  }
+}
+
+.submit {
+  width: 15rem;
+}
+
+@media (width <= 1200px) {
+  .profile {
+    align-items: center;
+  }
+
+  .edit-form {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .submit {
+    grid-row-start: 3;
+  }
+}
+
+@media (width <= 900px) {
+  .edit-form {
+    justify-items: center;
+    align-content: center;
+    grid-template-columns: 1fr;
+  }
+
+  .profile {
+    background-position: 60% 70%;
+  }
+
+  .submit {
+    grid-row-start: 4;
+  }
+}

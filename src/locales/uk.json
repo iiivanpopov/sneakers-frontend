@@ -1,32 +1,53 @@
 {
   "bestsellers.title": "Найпопулярніші товари",
-  "button.continue": "Продовжити",
+
   "aboutUs.title": "Про нас",
   "aboutUs.description": "Наш онлайн-магазин кросівок пропонує ретельно підібрану колекцію оригінального взуття від провідних світових брендів. Ми слідкуємо за трендами, щоб пропонувати вам найновіші моделі, які поєднують комфорт і продуктивність. Усі товари на 100% оригінальні - жодних підробок, жодних компромісів. Швидка доставка, безпечні платежі та оперативна підтримка - це основа нашого сервісу.",
+
   "advantages.title": "Переваги",
   "advantage.sustainability": "ВИТРИВАЛІСТЬ",
   "advantage.quality": "ЯКІСТЬ",
   "advantage.innovation": "ІННОВАЦІЇ",
-  "button.menu": "Меню",
-  "button.resendCode": "Надіслати код повторно",
-  "button.signIn": "Увійти",
-  "confirmOtp": "Підтвердження одноразового пароля",
-  "featuredSneaker.addToCart": "Додати до кошика",
-  "featuredSneaker.sale": "Розпродаж",
-  "footer.contacts": "Контакти",
-  "footer.socials": "Соціальні мережі",
-  "header.freeShipping": "Безкоштовна доставка для міжнародних замовлень від $50",
+
+  "hero.title": "Покращуй свій крок",
   "hero.description": "Преміальне спортивне взуття",
   "hero.shopNow": "Купити зараз",
-  "hero.title": "Покращуй свій крок",
+
+  "header.freeShipping": "Безкоштовна доставка для міжнародних замовлень від $50",
+
+  "featuredSneaker.addToCart": "Додати до кошика",
+  "featuredSneaker.sale": "Розпродаж",
+
+  "footer.contacts": "Контакти",
+  "footer.socials": "Соціальні мережі",
+
+  "button.menu": "Меню",
+  "button.submit": "Надіслати",
+  "button.resendCode": "Надіслати код повторно",
+  "button.signIn": "Увійти",
+  "button.continue": "Продовжити",
+
+  "signIn": "Увійти",
+  "confirmOtp": "Підтвердження одноразового пароля",
+
   "hint.checkEmail": "Перевірте вашу електронну пошту",
+
   "label.email": "Електронна пошта",
   "label.otp": "Одноразовий пароль",
+  "label.firstName": "Ім’я",
+  "label.middleName": "По батькові",
+  "label.lastName": "Прізвище",
+  "label.country": "Країна",
+  "label.city": "Місто",
+
   "notification.incorrectOtp": "Неправильний одноразовий пароль",
   "notification.signedIn": "Успішний вхід",
-  "signIn": "Увійти",
+  "notification.success.updateUser": "Користувача успішно оновлено",
+  "notification.error.updateUser": "Не вдалося оновити користувача",
+
   "validation.invalidEmail": "Недійсна електронна пошта",
   "validation.otpLength": "Код підтвердження має містити 6 символів",
+
   "sidebar.link.HOME": "Головна",
   "sidebar.link.ABOUT": "Про нас",
   "sidebar.link.SHOP": "Магазин",
@@ -35,5 +56,7 @@
   "sidebar.link.FAVORED": "Улюблені",
   "sidebar.link.ORDERS": "Замовлення",
   "sidebar.link.DELIVERIES": "Доставка",
-  "sidebar.link.SIGN IN": "Увійти"
+  "sidebar.link.SIGN IN": "Увійти",
+
+  "profile.title": "Профіль"
 }

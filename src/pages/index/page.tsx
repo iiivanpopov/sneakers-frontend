@@ -6,8 +6,9 @@ import { Typography } from '@/shared/ui/common/Typography'
 import styles from './page.module.css'
 
 export function IndexPage() {
-  const popularSneakersRequest = useGetPopularSneakersQuery({ limit: '4' })
-  const mostPopularSneaker = popularSneakersRequest.data?.data.data[0]
+  const popularSneakersRequest = useGetPopularSneakersQuery({ limit: '3' })
+  const mostPopularSneakers = popularSneakersRequest?.data?.data?.data
+  const mostPopularSneaker = mostPopularSneakers?.[0]
 
   return (
     <>
@@ -21,62 +22,68 @@ export function IndexPage() {
         <Link className={styles.heroCta} to={ROUTES.CATALOG} resetScroll={true}>
           <FormattedMessage id="hero.shopNow" />
         </Link>
-        <div className={styles.featuredSneakerCard}>
-          <div className={styles.imageContainer}>
-            <span className={styles.saleBadge}>
-              <FormattedMessage id="featuredSneaker.sale" />
-            </span>
-            <img
-              alt={mostPopularSneaker?.name}
-              className={styles.sneakerImage}
-              src={mostPopularSneaker?.images[0]}
-              loading="lazy"
-            />
-          </div>
-          <div className={styles.details}>
-            <span className={styles.name}>{mostPopularSneaker?.name}</span>
-            <div className={styles.priceInfo}>
-              <span className={styles.currentPrice}>
-                {mostPopularSneaker?.finalPrice}$
+        {!!mostPopularSneaker && (
+          <div className={styles.featuredSneakerCard}>
+            <div className={styles.imageContainer}>
+              <span className={styles.saleBadge}>
+                <FormattedMessage id="featuredSneaker.sale" />
               </span>
-              {!!mostPopularSneaker?.hasActiveDiscount && (
-                <span className={styles.originalPrice}>
-                  {mostPopularSneaker.price}$
-                </span>
-              )}
-            </div>
-            <Link to="#" className={styles.addToCartBtn}>
-              <FormattedMessage id="featuredSneaker.addToCart" />
-            </Link>
-          </div>
-        </div>
-      </section>
-      <section className={styles.bestSellersSection}>
-        <Typography tag="h2" variant="subtitle">
-          <FormattedMessage id="bestsellers.title" />
-        </Typography>
-        <div className={styles.bestSellersList}>
-          {popularSneakersRequest.data?.data.data.map(sneaker => (
-            <Link
-              to={ROUTES.CATALOG}
-              className={styles.bestSellerItem}
-              key={sneaker.id}
-              resetScroll={true}
-            >
               <img
-                src={sneaker.images[0]}
-                className={styles.itemImage}
+                alt={mostPopularSneaker?.name}
+                className={styles.sneakerImage}
+                src={mostPopularSneaker?.images[0]}
                 loading="lazy"
               />
-              <span className={styles.name}>{sneaker.name}</span>
-              <span className={styles.currentPrice}>{sneaker.finalPrice}$</span>
-              {!!sneaker.hasActiveDiscount && (
-                <span className={styles.originalPrice}>{sneaker.price}$</span>
-              )}
-            </Link>
-          ))}
-        </div>
+            </div>
+            <div className={styles.details}>
+              <span className={styles.name}>{mostPopularSneaker?.name}</span>
+              <div className={styles.priceInfo}>
+                <span className={styles.currentPrice}>
+                  {mostPopularSneaker?.finalPrice}$
+                </span>
+                {!!mostPopularSneaker?.hasActiveDiscount && (
+                  <span className={styles.originalPrice}>
+                    {mostPopularSneaker.price}$
+                  </span>
+                )}
+              </div>
+              <Link to="#" className={styles.addToCartBtn}>
+                <FormattedMessage id="featuredSneaker.addToCart" />
+              </Link>
+            </div>
+          </div>
+        )}
       </section>
+      {!!mostPopularSneakers && (
+        <section className={styles.bestSellersSection}>
+          <Typography tag="h2" variant="subtitle">
+            <FormattedMessage id="bestsellers.title" />
+          </Typography>
+          <div className={styles.bestSellersList}>
+            {mostPopularSneakers?.map(sneaker => (
+              <Link
+                to={ROUTES.CATALOG}
+                className={styles.bestSellerItem}
+                key={sneaker.id}
+                resetScroll={true}
+              >
+                <img
+                  src={sneaker.images[0]}
+                  className={styles.itemImage}
+                  loading="lazy"
+                />
+                <span className={styles.name}>{sneaker.name}</span>
+                <span className={styles.currentPrice}>
+                  {sneaker.finalPrice}$
+                </span>
+                {!!sneaker.hasActiveDiscount && (
+                  <span className={styles.originalPrice}>{sneaker.price}$</span>
+                )}
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
     </>
   )
 }

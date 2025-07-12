@@ -1,32 +1,26 @@
 {
   "bestsellers.title": "BEST SELLERS",
+
   "aboutUs.title": "About us",
   "aboutUs.description": "Our online sneaker store offers a curated selection of authentic footwear from the world's top brands. We stay on top of trends to bring you the latest styles that combine comfort and performance. All products are 100% original - no fakes, no compromises. Fast shipping, secure payments, and responsive support are part of our core service.",
+
   "advantages.title": "Advantages",
   "advantage.sustainability": "SUSTAINABILITY",
   "advantage.quality": "QUALITY",
   "advantage.innovation": "INNOVATION",
-  "button.continue": "Continue",
-  "button.menu": "Menu",
-  "button.resendCode": "Resend OTP",
-  "button.signIn": "Sign in",
-  "confirmOtp": "Confirm OTP",
-  "featuredSneaker.addToCart": "ADD TO CART",
-  "featuredSneaker.sale": "SALE",
-  "footer.contacts": "CONTACTS",
-  "footer.socials": "SOCIAL MEDIA",
-  "header.freeShipping": "free shipping on all intl. orders over $50",
+
+  "hero.title": "Step-up Your Stride",
   "hero.description": "Premium Athletic Footwear",
   "hero.shopNow": "SHOP NOW",
-  "hero.title": "Step-up Your Stride",
-  "hint.checkEmail": "Check your e-mail",
-  "label.email": "E-Mail",
-  "label.otp": "One time password",
-  "notification.incorrectOtp": "Incorrect OTP",
-  "notification.signedIn": "Successfully signed in",
-  "signIn": "Sign in",
-  "validation.invalidEmail": "Invalid email",
-  "validation.otpLength": "Confirm code must be 6 characters long",
+
+  "featuredSneaker.addToCart": "ADD TO CART",
+  "featuredSneaker.sale": "SALE",
+
+  "header.freeShipping": "free shipping on all intl. orders over $50",
+
+  "footer.contacts": "CONTACTS",
+  "footer.socials": "SOCIAL MEDIA",
+
   "sidebar.link.HOME": "Home",
   "sidebar.link.ABOUT": "About",
   "sidebar.link.SHOP": "Shop",
@@ -35,5 +29,33 @@
   "sidebar.link.FAVORED": "Favorites",
   "sidebar.link.ORDERS": "Orders",
   "sidebar.link.DELIVERIES": "Deliveries",
-  "sidebar.link.SIGN IN": "Sign In"
+  "sidebar.link.SIGN IN": "Sign In",
+
+  "button.continue": "Continue",
+  "button.submit": "Submit",
+  "button.menu": "Menu",
+  "button.resendCode": "Resend OTP",
+  "button.signIn": "Sign in",
+
+  "label.email": "E-Mail",
+  "label.firstName": "First name",
+  "label.middleName": "Middle name",
+  "label.lastName": "Last name",
+  "label.country": "Country",
+  "label.city": "City",
+  "label.otp": "One time password",
+
+  "confirmOtp": "Confirm OTP",
+  "hint.checkEmail": "Check your e-mail",
+  "signIn": "Sign in",
+
+  "notification.incorrectOtp": "Incorrect OTP",
+  "notification.success.updateUser": "User updated successfully",
+  "notification.error.updateUser": "Failed to update user",
+  "notification.signedIn": "Successfully signed in",
+
+  "validation.invalidEmail": "Invalid email",
+  "validation.otpLength": "Confirm code must be 6 characters long",
+
+  "profile.title": "Profile"
 }

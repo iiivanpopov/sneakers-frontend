@@ -8,6 +8,7 @@ import { useGetOtpMutation } from '@/shared/api'
 
 function useSingInSchema() {
   const { formatMessage } = useIntl()
+  // TODO: Return code instead of formatted message
 
   return z.object({
     email: z.string().email(formatMessage({ id: 'validation.invalidEmail' }))

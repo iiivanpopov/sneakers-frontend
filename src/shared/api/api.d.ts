@@ -35,6 +35,19 @@ type ApiError = import('axios').AxiosError<{
 }>
 
 interface GetProfileResponse extends BaseResponse {
+  user: {
+    id: string
+    email: string
+    firstName: string
+    middleName: string
+    lastName: string
+    country: string
+    city: string
+    role: string
+  }
+}
+
+interface User {
   id: string
   email: string
   firstName: string
@@ -45,7 +58,32 @@ interface GetProfileResponse extends BaseResponse {
   role: string
 }
 
-interface User extends GetProfileResponse {}
+interface ProfileDto {
+  firstName: string
+  middleName: string
+  lastName: string
+  email: string
+  city: string
+  country: string
+}
+
+interface UpdateProfileDto {
+  profile: ProfileDto
+  email: string
+}
+
+interface UpdateProfileResponse extends BaseResponse {
+  user: {
+    id: string
+    email: string
+    firstName: string
+    middleName: string
+    lastName: string
+    country: string
+    city: string
+    role: string
+  }
+}
 
 interface OtpResponse extends BaseResponse {
   retryAt: number

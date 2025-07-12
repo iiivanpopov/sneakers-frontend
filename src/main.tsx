@@ -37,7 +37,7 @@ export async function init() {
       queryFn: () => getProfile()
     })
 
-    providersProps.profile.defaultProfile = getProfileQuery.data
+    providersProps.profile.defaultProfile = getProfileQuery.data?.user
   }
 
   root.render(

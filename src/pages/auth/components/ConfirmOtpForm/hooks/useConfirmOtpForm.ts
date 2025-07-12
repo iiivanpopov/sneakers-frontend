@@ -13,6 +13,7 @@ import { isApiError } from '@/shared/lib/isApiError'
 import { toast } from '@/shared/ui/common/Toast/show'
 
 function useConfirmOtpSchema() {
+  // TODO: Return code instead of formatted message
   const { formatMessage } = useIntl()
 
   return z.object({
