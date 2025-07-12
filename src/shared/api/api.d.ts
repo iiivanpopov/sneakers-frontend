@@ -34,6 +34,19 @@ type ApiError = import('axios').AxiosError<{
   success: false
 }>
 
+interface GetProfileResponse extends BaseResponse {
+  id: string
+  email: string
+  firstName: string
+  middleName: string
+  lastName: string
+  country: string
+  city: string
+  role: string
+}
+
+interface User extends GetProfileResponse {}
+
 interface OtpResponse extends BaseResponse {
   retryAt: number
 }
@@ -47,6 +60,10 @@ interface CreateOtpDto {
 }
 
 interface SignInResponse extends BaseResponse {
+  accessToken: string
+}
+
+interface RefreshResponse extends BaseResponse {
   accessToken: string
 }
 

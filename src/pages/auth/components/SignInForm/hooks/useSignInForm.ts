@@ -1,5 +1,4 @@
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useLayoutEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { useIntl } from 'react-intl'
 import * as z from 'zod'
@@ -21,7 +20,7 @@ export function useSignInForm() {
   const signInSchema = useSingInSchema()
 
   const { setStage } = useStage()
-  const { setEmail, email } = useEmail()
+  const { setEmail } = useEmail()
   const signInForm = useForm<SignInData>({
     resolver: zodResolver(signInSchema)
   })
@@ -33,17 +32,12 @@ export function useSignInForm() {
       }
     }
   })
+  // TODO: Rewrite to mutateAsync
 
   const onSubmit = signInForm.handleSubmit(data => {
     setEmail(data.email)
     getOtpMutation.mutate({ params: data })
   })
-
-  useLayoutEffect(() => {
-    if (email) {
-      setStage('confirmOtp')
-    }
-  }, [])
 
   return {
     form: signInForm,

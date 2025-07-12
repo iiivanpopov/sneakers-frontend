@@ -13,14 +13,11 @@ const messages = {
 
 export interface I18nProviderProps {
   children: React.ReactNode
+  defaultLocale: Locale
 }
 
-export function I18nProvider({ children }: I18nProviderProps) {
-  const storedLocale = localStorage.getItem(
-    LOCAL_STORAGE.LANGUAGE
-  ) as Locale | null
-  const initialLocale: Locale = storedLocale ?? 'en'
-  const [locale, setLocale] = useState<Locale>(initialLocale)
+export function I18nProvider({ children, defaultLocale }: I18nProviderProps) {
+  const [locale, setLocale] = useState<Locale>(defaultLocale)
 
   const setLocaleLocalStorage = (locale: Locale) => {
     setLocale(locale)

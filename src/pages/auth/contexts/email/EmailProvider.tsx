@@ -8,16 +8,16 @@ export interface EmailProviderProps {
 
 export function EmailProvider({ children }: EmailProviderProps) {
   const [email, setEmail] = useState<string>(
-    localStorage.getItem(LOCAL_STORAGE.LAST_AUTH_EMAIL) ?? ''
+    sessionStorage.getItem(LOCAL_STORAGE.LAST_AUTH_EMAIL) ?? ''
   )
 
-  const setEmailLocalStorage = (email: string) => {
+  const setEmailSessionStorage = (email: string) => {
     setEmail(email)
-    localStorage.setItem(LOCAL_STORAGE.LAST_AUTH_EMAIL, email)
+    sessionStorage.setItem(LOCAL_STORAGE.LAST_AUTH_EMAIL, email)
   }
 
   const value = useMemo(
-    () => ({ email, setEmail: setEmailLocalStorage }),
+    () => ({ email, setEmail: setEmailSessionStorage }),
     [email]
   )
 

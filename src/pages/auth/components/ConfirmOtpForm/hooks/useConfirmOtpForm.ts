@@ -36,6 +36,8 @@ export function useConfirmOtpForm() {
     resolver: zodResolver(confirmOtpSchema)
   })
 
+  // TODO: Rewrite to mutateAsync
+
   const signInMutation = useSignInMutation({
     options: {
       onSuccess: response => {
