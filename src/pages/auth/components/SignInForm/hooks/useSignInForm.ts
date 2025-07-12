@@ -1,17 +1,25 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useLayoutEffect } from 'react'
 import { useForm } from 'react-hook-form'
+import { useIntl } from 'react-intl'
 import * as z from 'zod'
 import { useEmail } from '@/pages/auth/contexts/email'
 import { useStage } from '@/pages/auth/contexts/stage'
 import { useGetOtpMutation } from '@/shared/api'
 
-const signInSchema = z.object({
-  email: z.string().email('Invalid email')
-})
-export type SignInData = z.infer<typeof signInSchema>
+function useSingInSchema() {
+  const { formatMessage } = useIntl()
+
+  return z.object({
+    email: z.string().email(formatMessage({ id: 'validation.invalidEmail' }))
+  })
+}
+
+export type SignInData = z.infer<ReturnType<typeof useSingInSchema>>
 
 export function useSignInForm() {
+  const signInSchema = useSingInSchema()
+
   const { setStage } = useStage()
   const { setEmail, email } = useEmail()
   const signInForm = useForm<SignInData>({

@@ -1,19 +1,19 @@
 .toast {
   font-size: 16px;
-  background: var(--bg-secondary);
-  padding: 8px 20px;
-  border-radius: 25px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  padding: 12px 18px;
+  background-color: rgb(0 0 0 / 40%);
+  color: #fff;
+  font-weight: 600;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgb(0 0 0 / 30%);
+  position: relative;
+  z-index: 1000;
 }
 
 .success {
-  color: var(--indicator-positive);
-  border: 1px solid var(--indicator-positive);
+  background-color: var(--indicator-positive);
 }
 
 .error {
-  color: var(--indicator-error);
-  border: 1px solid var(--indicator-error);
+  background-color: var(--indicator-error);
 }

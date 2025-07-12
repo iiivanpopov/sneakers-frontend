@@ -1,4 +1,5 @@
 import { Link } from '@tanstack/react-router'
+import { FormattedMessage } from 'react-intl'
 import { useGetPopularSneakersQuery } from '@/shared/api/hooks/useGetPopularSneakersQuery'
 import { ROUTES } from '@/shared/constants/routes'
 import { Typography } from '@/shared/ui/common/Typography'
@@ -11,14 +12,20 @@ export function IndexPage() {
   return (
     <>
       <section className={styles.heroSection}>
-        <h1 className={styles.heroTitle}>Step-up Your Stride</h1>
-        <h2 className={styles.heroDescription}>Premium Athletic Footwear</h2>
+        <h1 className={styles.heroTitle}>
+          <FormattedMessage id="hero.title" />
+        </h1>
+        <h2 className={styles.heroDescription}>
+          <FormattedMessage id="hero.description" />
+        </h2>
         <Link className={styles.heroCta} to={ROUTES.CATALOG} resetScroll={true}>
-          SHOP NOW
+          <FormattedMessage id="hero.shopNow" />
         </Link>
         <div className={styles.featuredSneakerCard}>
           <div className={styles.imageContainer}>
-            <span className={styles.saleBadge}>SALE</span>
+            <span className={styles.saleBadge}>
+              <FormattedMessage id="featuredSneaker.sale" />
+            </span>
             <img
               alt={mostPopularSneaker?.name}
               className={styles.sneakerImage}
@@ -39,14 +46,14 @@ export function IndexPage() {
               )}
             </div>
             <Link to="#" className={styles.addToCartBtn}>
-              ADD TO CART
+              <FormattedMessage id="featuredSneaker.addToCart" />
             </Link>
           </div>
         </div>
       </section>
       <section className={styles.bestSellersSection}>
         <Typography tag="h2" variant="subtitle">
-          BEST SELLERS
+          <FormattedMessage id="bestsellers.title" />
         </Typography>
         <div className={styles.bestSellersList}>
           {popularSneakersRequest.data?.data.data.map(sneaker => (

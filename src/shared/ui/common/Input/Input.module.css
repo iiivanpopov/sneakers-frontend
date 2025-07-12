@@ -1,4 +1,4 @@
-.input_wrapper {
+.input-wrapper {
   display: flex;
   flex-direction: column;
   row-gap: 8px;
@@ -23,7 +23,7 @@
   }
 }
 
-.input_error {
+.input-error {
   border-color: var(--indicator-error);
 
   &:focus {

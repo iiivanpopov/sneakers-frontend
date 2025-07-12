@@ -2,6 +2,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useNavigate } from '@tanstack/react-router'
 import { useEffect, useRef, useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { useIntl } from 'react-intl'
 import * as z from 'zod'
 import { useEmail } from '@/pages/auth/contexts/email'
 import { useGetOtpMutation, useSignInMutation } from '@/shared/api'
@@ -9,16 +10,22 @@ import { useGetOtpStatusQuery } from '@/shared/api/hooks/useGetOtpStatusMutation
 import { LOCAL_STORAGE } from '@/shared/constants/localStorage'
 import { ROUTES } from '@/shared/constants/routes'
 import { isApiError } from '@/shared/lib/isApiError'
-import { toast } from '@/shared/ui/common/Toast'
+import { toast } from '@/shared/ui/common/Toast/show'
 
-const confirmOtpSchema = z.object({
-  code: z.string().length(6, 'Confirm code must be 6 characters long'),
-  email: z.string().email('Invalid email')
-})
+function useConfirmOtpSchema() {
+  const { formatMessage } = useIntl()
 
-export type ConfirmOtpData = z.infer<typeof confirmOtpSchema>
+  return z.object({
+    code: z.string().length(6, formatMessage({ id: 'validation.otpLength' })),
+    email: z.string().email(formatMessage({ id: 'validation.invalidEmail' }))
+  })
+}
+
+export type ConfirmOtpData = z.infer<ReturnType<typeof useConfirmOtpSchema>>
 
 export function useConfirmOtpForm() {
+  const confirmOtpSchema = useConfirmOtpSchema()
+  const { formatMessage } = useIntl()
   const { email, setEmail } = useEmail()
   const navigate = useNavigate()
   const [retryIn, setRetryIn] = useState<number | null>(null)
@@ -38,11 +45,14 @@ export function useConfirmOtpForm() {
         )
         setEmail('')
         navigate({ to: ROUTES.PROFILE })
-        toast.success('Successfully signed in')
+        toast.success(formatMessage({ id: 'notification.signedIn' }))
       },
       onError: error => {
-        if (isApiError(error)) {
-          toast.error(error.response.data.reason)
+        if (
+          isApiError(error) &&
+          error.response.data.reason === 'Incorrect otp code'
+        ) {
+          toast.error(formatMessage({ id: 'notification.incorrectOtp' }))
         }
       }
     }

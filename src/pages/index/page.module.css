@@ -26,7 +26,9 @@
 .hero-cta {
   text-decoration: none;
   padding: 0.75rem 1.25rem;
-  width: 8.75rem;
+  min-width: 8.75rem;
+  max-width: fit-content;
+  text-transform: uppercase;
   text-align: center;
   color: var(--indicator-attention);
   background: var(--text-primary);
@@ -59,6 +61,7 @@
 
 .sale-badge {
   position: absolute;
+  text-transform: uppercase;
   top: 0.75rem;
   left: 0.75rem;
   background: var(--indicator-attention);
@@ -117,6 +120,7 @@
 .add-to-cart-btn {
   text-decoration: none;
   text-align: center;
+  text-transform: uppercase;
   position: absolute;
   bottom: 0.75rem;
   color: var(--text-primary);
@@ -125,7 +129,7 @@
   border-radius: 2.25rem;
   font-weight: 600;
   background: none;
-  width: 12rem;
+  width: 11rem;
   padding: 0.75rem 2.25rem;
   cursor: pointer;
   transition:
@@ -208,7 +212,7 @@
   }
 
   .add-to-cart-btn {
-    width: 8rem;
+    width: 14rem;
     padding: 0.5rem 1.5rem;
   }
 }

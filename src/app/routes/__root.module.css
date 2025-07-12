@@ -92,6 +92,17 @@
   cursor: pointer;
 }
 
+.locale {
+  background: none;
+  text-align: center;
+  border: none;
+  outline: none;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  transition: color 0.2s ease-in-out;
+  cursor: pointer;
+}
+
 .menu-button:hover {
   color: var(--text-secondary);
   background: none;
@@ -119,6 +130,7 @@
   min-width: 20rem;
   background: var(--bg-primary);
   color: #000;
+  text-transform: uppercase;
   padding: 0.5rem 2rem;
   border-radius: 0.5rem;
   border: 1px solid var(--text-invert);

@@ -1,9 +1,6 @@
-import type {SearchSneakersRequestParams} from '../requests/sneakers/search';
+import type { SearchSneakersRequestParams } from '../requests/sneakers/search'
 import { useQuery } from '@tanstack/react-query'
-import {
-  searchSneakers
-  
-} from '../requests/sneakers/search'
+import { searchSneakers } from '../requests/sneakers/search'
 
 export function useSearchSneakersQuery(
   params: SearchSneakersRequestParams,

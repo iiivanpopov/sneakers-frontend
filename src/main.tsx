@@ -7,7 +7,6 @@ import { Providers } from './app/providers'
 import './assets/css/reset.css'
 import './assets/css/theme.css'
 import './assets/css/global.css'
-import './assets/css/fonts.css'
 
 export function init() {
   const rootElement = document.getElementById('root')!

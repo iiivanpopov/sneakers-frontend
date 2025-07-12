@@ -25,7 +25,7 @@ export const Input = memo(
     const id = useId()
 
     return (
-      <div className={styles.input_wrapper}>
+      <div className={styles.inputWrapper}>
         {label && (
           <label htmlFor={id} className={styles.label}>
             {label}
@@ -34,7 +34,7 @@ export const Input = memo(
         <Component
           id={id}
           className={clsx(styles.input, className, {
-            [styles.input_error]: !!error
+            [styles.inputError]: !!error
           })}
           {...props}
         />

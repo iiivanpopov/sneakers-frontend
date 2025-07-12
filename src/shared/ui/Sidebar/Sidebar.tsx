@@ -1,8 +1,9 @@
 import { Link, useLocation } from '@tanstack/react-router'
 import clsx from 'clsx'
 import { m } from 'framer-motion'
-import { SidebarOpenIcon } from 'lucide-react'
+import { PanelRightClose } from 'lucide-react'
 import { useEffect, useRef } from 'react'
+import { FormattedMessage } from 'react-intl'
 import { ELEMENT_IDS } from '@/shared/constants/elementIds'
 import { ROUTES } from '@/shared/constants/routes'
 import { useSidebar } from '@/shared/contexts/sidebar/useSidebar'
@@ -67,11 +68,11 @@ export function Sidebar() {
         className={styles.sidebar}
       >
         <Button
-          className={styles.close_sidebar}
+          className={styles.closeSidebar}
           variant="text"
           onClick={() => setIsOpen(false)}
         >
-          <SidebarOpenIcon />
+          <PanelRightClose />
         </Button>
         {LINKS.map(({ label, to }) => (
           <Link
@@ -79,10 +80,10 @@ export function Sidebar() {
             to={to}
             disabled={isCurrent(to)}
             className={clsx(styles.link, {
-              [styles.link_disabled]: isCurrent(to)
+              [styles.linkDisabled]: isCurrent(to)
             })}
           >
-            {label}
+            <FormattedMessage id={`sidebar.link.${label}`} />
           </Link>
         ))}
       </m.div>
