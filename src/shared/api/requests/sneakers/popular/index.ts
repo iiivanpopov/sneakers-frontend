@@ -10,7 +10,7 @@ export async function getPopularSneakers({
   params
 }: GetPopularSneakersRequestConfig) {
   return api.get<GetPopularSneakersResponse>(
-    `/sneakers/popular${buildSearchParams({ ...params })}`,
+    `/popular${buildSearchParams({ ...params })}`,
     config
   )
 }

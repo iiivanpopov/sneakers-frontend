@@ -1,7 +1,7 @@
-.about_section {
+.about-hero-section {
   padding: 0.75rem 3.25rem;
-  background-image: url('../../assets/img/sneaker2.webp');
-  min-height: 52rem;
+  background-image: url('/sneaker2.webp');
+  height: 52rem;
   width: 100%;
   background-position: clamp(27%, 10vw, 100%) 70%;
   background-size: cover;
@@ -11,13 +11,13 @@
   position: relative;
 }
 
-.title {
-  font-size: clamp(3rem, 4.5vw, 5.5rem);
+.section-title {
+  font-size: clamp(2.5rem, 4.5vw, 5.5rem);
   line-height: 1.2;
   margin-bottom: 1rem;
 }
 
-.about_card_wrapper {
+.card-container {
   width: 100%;
   height: 100%;
   display: flex;
@@ -25,7 +25,7 @@
   align-items: flex-end;
 }
 
-.about_card {
+.about-card {
   background-color: rgb(0 0 0 / 40%);
   padding: 20px 30px;
   height: fit-content;
@@ -35,40 +35,45 @@
   margin-bottom: 2.5rem;
 }
 
-.about_card__description {
+.description {
   color: var(--text-invert);
 }
 
-.advantages {
+.advantages-section {
   padding: 0.75rem 3.25rem;
   width: 100%;
   display: flex;
   flex-direction: column;
   position: relative;
+  margin-bottom: 200px;
 }
 
-.advantages_list {
+.advantages-list {
   display: flex;
   gap: 20px;
   width: 100%;
   justify-content: space-between;
 }
 
-.advantage {
-  width: clamp(200px, 30vw, 550px);
-  height: clamp(200px, 30vw, 550px);
+.advantage-item {
   position: relative;
-  aspect-ratio: 1;
+  overflow: hidden;
 }
 
-.advantage_image {
+.item-image {
+  aspect-ratio: 1 / 1;
   object-fit: cover;
-  width: 100%;
-  height: 100%;
+  width: clamp(350px, 30vw, 550px);
+  height: clamp(350px, 30vw, 550px);
   user-select: none;
+  transition: transform 0.1s ease-in-out;
 }
 
-.advantage_name {
+.item-image:hover {
+  transform: scale(1.15);
+}
+
+.item-title {
   position: absolute;
   right: 20px;
   backdrop-filter: blur(10px);
@@ -81,24 +86,28 @@
   padding: 10px 20px;
 }
 
-@media (width <= 900px) {
-  .title {
+@media (width <= 1200px) {
+  .section-title {
     text-align: center;
   }
 
-  .advantages_list {
+  .advantages-list {
     flex-direction: column;
     align-items: center;
     gap: 30px;
   }
 
-  .about_card_wrapper {
+  .item-image {
+    width: clamp(300px, 80vw, 600px);
+    height: clamp(300px, 80vw, 600px);
+  }
+
+  .card-container {
     justify-content: center;
     align-items: flex-start;
   }
 
-  .about_card {
-    width: 90%;
-    padding: 15px 20px;
+  .about-card {
+    width: 60vw;
   }
 }

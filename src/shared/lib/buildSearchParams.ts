@@ -1,4 +1,6 @@
-export function buildSearchParams (params: Record<string, string | undefined | null>): string {
+export function buildSearchParams(
+  params: Record<string, string | undefined | null>
+): string {
   const searchParams = new URLSearchParams()
 
   for (const [key, value] of Object.entries(params)) {

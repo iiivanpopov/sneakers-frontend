@@ -1,7 +1,7 @@
-import type {GetSneakerStockRequestParams} from '../requests';
+import type { GetSneakerStockRequestParams } from '../requests'
 
 import { useQuery } from '@tanstack/react-query'
-import { getSneakerStock  } from '../requests'
+import { getSneakerStock } from '../requests'
 
 export function useGetSneakerStockQuery(
   params: GetSneakerStockRequestParams,

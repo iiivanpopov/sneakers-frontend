@@ -1,36 +1,73 @@
 import { Link } from '@tanstack/react-router'
-import sneaker_sale from '@/assets/img/sneaker_sale.webp'
+import { useGetPopularSneakersQuery } from '@/shared/api/hooks/useGetPopularSneakersQuery'
 import { ROUTES } from '@/shared/constants/routes'
+import { Typography } from '@/shared/ui/common/Typography'
 import styles from './page.module.css'
 
 export function IndexPage() {
+  const popularSneakersRequest = useGetPopularSneakersQuery({ limit: '4' })
+  const mostPopularSneaker = popularSneakersRequest.data?.data.data[0]
+
   return (
     <>
-      <section className={styles.landing_section}>
-        <h1 className={styles.title}>Step-up Your Stride</h1>
-        <h2 className={styles.description}>Premium Athletic Footwear</h2>
-        <Link className={styles.shop_now} to={ROUTES.CATALOG}>
+      <section className={styles.heroSection}>
+        <h1 className={styles.heroTitle}>Step-up Your Stride</h1>
+        <h2 className={styles.heroDescription}>Premium Athletic Footwear</h2>
+        <Link className={styles.heroCta} to={ROUTES.CATALOG} resetScroll={true}>
           SHOP NOW
         </Link>
-        <div className={styles.sneaker_card}>
-          <div className={styles.sneaker_image_wrapper}>
-            <span className={styles.sale}>SALE</span>
+        <div className={styles.featuredSneakerCard}>
+          <div className={styles.imageContainer}>
+            <span className={styles.saleBadge}>SALE</span>
             <img
-              src={sneaker_sale}
-              className={styles.sneaker_image}
-              alt="Sales sneaker image"
+              alt={mostPopularSneaker?.name}
+              className={styles.sneakerImage}
+              src={mostPopularSneaker?.images[0]}
+              loading="lazy"
             />
           </div>
-          <div className={styles.sneaker_details}>
-            <span className={styles.sneaker_name}>Nike Air Max 97</span>
-            <div className={styles.price_container}>
-              <span className={styles.sneaker_price}>190$</span>
-              <span className={styles.sneaker_price_previous}>200$</span>
+          <div className={styles.details}>
+            <span className={styles.name}>{mostPopularSneaker?.name}</span>
+            <div className={styles.priceInfo}>
+              <span className={styles.currentPrice}>
+                {mostPopularSneaker?.finalPrice}$
+              </span>
+              {!!mostPopularSneaker?.hasActiveDiscount && (
+                <span className={styles.originalPrice}>
+                  {mostPopularSneaker.price}$
+                </span>
+              )}
             </div>
-            <Link to="#" className={styles.add_to_cart}>
+            <Link to="#" className={styles.addToCartBtn}>
               ADD TO CART
             </Link>
           </div>
+        </div>
+      </section>
+      <section className={styles.bestSellersSection}>
+        <Typography tag="h2" variant="subtitle">
+          BEST SELLERS
+        </Typography>
+        <div className={styles.bestSellersList}>
+          {popularSneakersRequest.data?.data.data.map(sneaker => (
+            <Link
+              to={ROUTES.CATALOG}
+              className={styles.bestSellerItem}
+              key={sneaker.id}
+              resetScroll={true}
+            >
+              <img
+                src={sneaker.images[0]}
+                className={styles.itemImage}
+                loading="lazy"
+              />
+              <span className={styles.name}>{sneaker.name}</span>
+              <span className={styles.currentPrice}>{sneaker.finalPrice}$</span>
+              {!!sneaker.hasActiveDiscount && (
+                <span className={styles.originalPrice}>{sneaker.price}$</span>
+              )}
+            </Link>
+          ))}
         </div>
       </section>
     </>

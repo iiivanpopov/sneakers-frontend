@@ -1,24 +1,44 @@
+:root {
+  --weight-bold: 700;
+  --weight-medium: 500;
+  --weight-regular: 400;
+  --line-height-heading: 1.2;
+  --line-height-body: 1.5;
+}
+
 .title {
   color: var(--text-primary);
-  font-size: 42px;
-  font-weight: 700;
+  font-size: clamp(2rem, 5vw, 2.625rem);
+  font-weight: var(--weight-bold);
+  line-height: var(--line-height-heading);
 }
 
 .subtitle {
   color: var(--text-secondary);
-  font-size: 24px;
-  font-weight: 500;
+  font-size: clamp(1.25rem, 3vw, 1.5rem);
+  font-weight: var(--weight-medium);
+  line-height: var(--line-height-heading);
 }
 
 .body {
   color: var(--text-primary);
-  font-size: 16px;
-  line-height: 1.3rem;
-  font-weight: 400;
+  font-size: clamp(0.875rem, 2.5vw, 1rem);
+  font-weight: var(--weight-regular);
+  line-height: var(--line-height-body);
 }
 
 .comment {
   color: var(--text-tertiary);
-  font-size: 14px;
-  font-weight: 400;
+  font-size: clamp(0.75rem, 2vw, 0.875rem);
+  font-weight: var(--weight-regular);
+  line-height: var(--line-height-body);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .title,
+  .subtitle,
+  .body,
+  .comment {
+    transition: none;
+  }
 }

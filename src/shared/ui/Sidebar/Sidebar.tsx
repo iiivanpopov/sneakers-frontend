@@ -3,6 +3,7 @@ import clsx from 'clsx'
 import { m } from 'framer-motion'
 import { SidebarOpenIcon } from 'lucide-react'
 import { useEffect, useRef } from 'react'
+import { ELEMENT_IDS } from '@/shared/constants/elementIds'
 import { ROUTES } from '@/shared/constants/routes'
 import { useSidebar } from '@/shared/contexts/sidebar/useSidebar'
 import { useClickOutside } from '@/shared/hooks'
@@ -32,7 +33,7 @@ export function Sidebar() {
     if (
       event.target &&
       'id' in event.target &&
-      event.target.id !== 'header__menu'
+      event.target.id !== ELEMENT_IDS.headerMenuButton
     ) {
       setIsOpen(false)
     }

@@ -9,6 +9,7 @@ lerna-debug.log*
 
 **/.tanstack
 **/.vscode
+**/.cursor
 
 node_modules
 dist

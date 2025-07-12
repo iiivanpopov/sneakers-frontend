@@ -1,8 +1,10 @@
 import { createRootRoute, Link, Outlet } from '@tanstack/react-router'
 import { ShoppingBasket as CartIcon, HeartIcon, SearchIcon } from 'lucide-react'
+import { ELEMENT_IDS } from '@/shared/constants/elementIds'
 import { ROUTES } from '@/shared/constants/routes'
 import { useSidebar } from '@/shared/contexts/sidebar/useSidebar'
 import { Sidebar } from '@/shared/ui/Sidebar'
+import styles from './__root.module.css'
 
 export const Route = createRootRoute({
   component: RootComponent
@@ -14,7 +16,7 @@ function RootComponent() {
   return (
     <>
       <Sidebar />
-      <div className="free-shipping">
+      <div className={styles.shippingBanner}>
         <span>free shipping on all intl. orders over $50</span>
         <span>free shipping on all intl. orders over $50</span>
         <span>free shipping on all intl. orders over $50</span>
@@ -24,48 +26,47 @@ function RootComponent() {
         <span>free shipping on all intl. orders over $50</span>
         <span>free shipping on all intl. orders over $50</span>
       </div>
-      <header className="header">
-        <Link to={ROUTES.INDEX} className="header__title">
+      <header className={styles.siteHeader}>
+        <Link to={ROUTES.INDEX} className={styles.brandLogo}>
           Ryst.
         </Link>
-        <div className="header__actions">
-          <button type="button" className="header__search">
+        <div className={styles.headerActions}>
+          <button type="button" className={styles.searchButton}>
             <SearchIcon />
           </button>
-          <Link to={ROUTES.FAVORED} className="header__favored">
+          <Link to={ROUTES.FAVORED} className={styles.favoritesLink}>
             <HeartIcon />
           </Link>
-          <Link to={ROUTES.CART} className="header__cart">
+          <Link to={ROUTES.CART} className={styles.cartLink}>
             <CartIcon />
           </Link>
-          <Link to={ROUTES.AUTH} className="header__login">
+          <Link to={ROUTES.AUTH} className={styles.loginLink}>
             Sign In
           </Link>
           <button
             type="button"
-            id="header__menu"
+            id={ELEMENT_IDS.headerMenuButton}
             onClick={() => setIsOpen(true)}
-            className="header__menu"
+            className={styles.menuButton}
           >
             Menu
           </button>
         </div>
       </header>
-      <main>
+      <main className={styles.mainContent}>
         <Outlet />
       </main>
-      <footer className="footer">
-        <Link to={ROUTES.INDEX} className="footer__title">
-          Ryst.
-        </Link>
-        <section className="footer_information">
-          <div className="information__section">
-            <div className="heading">CONTACT</div>
-            <div className="information">info@mysite.com</div>
-            <div className="information">123-456-7890</div>
-            <div className="information">500 Terry Francine St.SA, CA 9415</div>
-            <div className="heading">SOCIAL MEDIA</div>
-            <div className="multi-information">
+      <footer className={styles.siteFooter}>
+        <section className={styles.footerInfo}>
+          <div className={styles.infoSection}>
+            <div className={styles.sectionHeading}>CONTACT</div>
+            <div className={styles.infoItem}>info@mysite.com</div>
+            <div className={styles.infoItem}>123-456-7890</div>
+            <div className={styles.infoItem}>
+              500 Terry Francine St.SA, CA 9415
+            </div>
+            <div className={styles.sectionHeading}>SOCIAL MEDIA</div>
+            <div className={styles.socialLinks}>
               <Link target="_blank" to="https://www.instagram.com/">
                 INST
               </Link>

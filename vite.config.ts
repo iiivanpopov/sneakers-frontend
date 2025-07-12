@@ -12,6 +12,12 @@ export default defineConfig({
     }),
     react()
   ],
+  css: {
+    modules: {
+      localsConvention: 'camelCase',
+      generateScopedName: '[name]__[local]__[hash:base64:5]'
+    }
+  },
   resolve: {
     alias: {
       '@/app': path.resolve(__dirname, 'src/app'),

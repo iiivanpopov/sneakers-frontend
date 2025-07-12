@@ -7,15 +7,11 @@ import styles from './page.module.css'
 export function AboutPage() {
   return (
     <>
-      <section className={styles.about_section}>
-        <Typography className={styles.title}>About us</Typography>
-        <div className={styles.about_card_wrapper}>
-          <div className={styles.about_card}>
-            <Typography
-              variant="body"
-              tag="div"
-              className={styles.about_card__description}
-            >
+      <section className={styles.aboutHeroSection}>
+        <Typography className={styles.sectionTitle}>About us</Typography>
+        <div className={styles.cardContainer}>
+          <div className={styles.aboutCard}>
+            <Typography variant="body" tag="div" className={styles.description}>
               Our online sneaker store offers a curated selection of authentic
               footwear from the world's top brands. We stay on top of trends to
               bring you the latest styles that combine comfort and performance.
@@ -26,34 +22,34 @@ export function AboutPage() {
           </div>
         </div>
       </section>
-      <section className={styles.advantages}>
-        <Typography className={styles.title}>Advantages</Typography>
-        <div className={styles.advantages_list}>
-          <div className={styles.advantage}>
+      <section className={styles.advantagesSection}>
+        <Typography className={styles.sectionTitle}>Advantages</Typography>
+        <div className={styles.advantagesList}>
+          <div className={styles.advantageItem}>
             <img
-              className={styles.advantage_image}
+              className={styles.itemImage}
               src={sustainabilityImage}
               alt="sneaker sustainability preview image"
             />
-            <div className={styles.advantage_name}>SUSTAINABLITY</div>
+            <div className={styles.itemTitle}>SUSTAINABILITY</div>
           </div>
 
-          <div className={styles.advantage}>
+          <div className={styles.advantageItem}>
             <img
-              className={styles.advantage_image}
+              className={styles.itemImage}
               src={qualityImage}
               alt="sneaker quality preview image"
             />
-            <div className={styles.advantage_name}>quality</div>
+            <div className={styles.itemTitle}>QUALITY</div>
           </div>
 
-          <div className={styles.advantage}>
+          <div className={styles.advantageItem}>
             <img
-              className={styles.advantage_image}
+              className={styles.itemImage}
               src={innovationImage}
               alt="sneaker innovation preview image"
             />
-            <div className={styles.advantage_name}>innovation</div>
+            <div className={styles.itemTitle}>INNOVATION</div>
           </div>
         </div>
       </section>
