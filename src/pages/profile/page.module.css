@@ -13,7 +13,7 @@
 
 .edit-form {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  grid-template-columns: 1fr 1fr;
   max-width: 1200px;
   gap: 1.5rem;
   margin: 0 auto;
@@ -22,6 +22,8 @@
 .inputs-group {
   display: flex;
   flex-direction: column;
+  outline: none;
+  border: none;
   gap: 20px;
   background: rgb(var(--bg-secondary-rgb), 0.5);
   backdrop-filter: blur(10px);
@@ -37,10 +39,21 @@
   &:focus {
     border-color: rgb(var(--bg-secondary-rgb), 0.6);
   }
+
+  &:disabled {
+    border-color: rgb(var(--bg-secondary-rgb), 0.3);
+  }
 }
 
 .submit {
   width: 15rem;
+
+  &:disabled {
+    background: rgb(var(--bg-secondary-rgb), 0.2);
+    border-color: rgb(var(--bg-secondary-rgb), 0.3);
+    color: var(--text-invert);
+    backdrop-filter: blur(10px);
+  }
 }
 
 @media (width <= 1200px) {

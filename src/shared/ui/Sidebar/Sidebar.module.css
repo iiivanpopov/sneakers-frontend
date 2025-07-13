@@ -58,6 +58,23 @@
     border-color 0.2s ease-in-out;
 }
 
+.sign-out {
+  display: block;
+  width: 100%;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  cursor: pointer;
+  color: var(--indicator-error);
+  border: none;
+  padding: 0;
+  border-bottom: 2px solid var(--indicator-error);
+  outline: none;
+  background: none;
+  text-align: start;
+}
+
 .link:hover {
   color: var(--text-primary);
   border-color: var(--text-primary);

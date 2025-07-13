@@ -99,7 +99,10 @@ interface CreateOtpDto {
 
 interface SignInResponse extends BaseResponse {
   accessToken: string
+  user: User
 }
+
+interface SignOutResponse extends BaseResponse {}
 
 interface RefreshResponse extends BaseResponse {
   accessToken: string

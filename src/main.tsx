@@ -2,9 +2,9 @@ import type { ProvidersProps } from './app/providers'
 import type { Locale } from './shared/contexts/i18n'
 import { QueryClient } from '@tanstack/react-query'
 import { createRoot } from 'react-dom/client'
-import { App } from './app/app'
-
 import { Providers } from './app/providers'
+
+import { Router } from './app/router'
 import { getProfile } from './shared/api'
 import { LOCAL_STORAGE } from './shared/constants/localStorage'
 import './assets/css/reset.css'
@@ -15,9 +15,8 @@ export async function init() {
   const rootElement = document.getElementById('root')!
   const root = createRoot(rootElement)
 
-  const queryClient = new QueryClient()
-
   const locale = localStorage.getItem(LOCAL_STORAGE.LANGUAGE) as Locale | null
+  const queryClient = new QueryClient()
 
   const providersProps: Omit<ProvidersProps, 'children'> = {
     query: { client: queryClient },
@@ -42,7 +41,7 @@ export async function init() {
 
   root.render(
     <Providers {...providersProps}>
-      <App />
+      <Router />
     </Providers>
   )
 }

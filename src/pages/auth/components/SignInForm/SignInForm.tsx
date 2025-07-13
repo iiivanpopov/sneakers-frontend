@@ -1,30 +1,41 @@
+import { memo } from 'react'
 import { FormattedMessage, useIntl } from 'react-intl'
-import { Button } from '@/shared/ui/common/Button/Button'
-import { Input } from '@/shared/ui/common/Input/Input'
-import { Typography } from '@/shared/ui/common/Typography/Typography'
+import { useFormatValidationError } from '@/shared/hooks/useFormatError'
+import { Button, Input, Typography } from '@/shared/ui'
 import { useSignInForm } from './hooks/useSignInForm'
 import styles from './SignInForm.module.css'
 
-export function SignInForm() {
-  const { functions, form } = useSignInForm()
+export const SignInForm = memo(() => {
+  const { form, state, functions } = useSignInForm()
   const { formatMessage } = useIntl()
 
   return (
-    <div className={styles.formContainer}>
-      <Typography>
+    <section className={styles.formContainer} aria-labelledby="sign-in-title">
+      <Typography id="sign-in-title" tag="h2">
         <FormattedMessage id="signIn" />
       </Typography>
-      <form onSubmit={functions.onSubmit} className={styles.form}>
-        <Input
-          {...form.register('email')}
-          error={form.formState.errors.email?.message}
-          label={formatMessage({ id: 'label.email' })}
-        />
-
-        <Button type="submit">
-          <FormattedMessage id="button.continue" />
-        </Button>
+      <form onSubmit={functions.onSubmit} className={styles.form} noValidate>
+        <fieldset disabled={state.isLoading}>
+          <Input
+            {...form.register('email')}
+            error={useFormatValidationError(form, 'email')}
+            label={formatMessage({ id: 'label.email' })}
+            type="email"
+            required
+            aria-required="true"
+            autoFocus
+            placeholder={formatMessage({ id: 'placeholder.email' })}
+          />
+        </fieldset>
+        <div className={styles.actions}>
+          <Button
+            type="submit"
+            disabled={state.isLoading || !form.formState.isValid}
+          >
+            <FormattedMessage id="button.continue" />
+          </Button>
+        </div>
       </form>
-    </div>
+    </section>
   )
-}
+})

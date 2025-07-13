@@ -7,8 +7,8 @@ export function useSignInMutation(
 ) {
   return useMutation({
     mutationKey: ['signInMutation'],
-    mutationFn: ({ params, config }) =>
-      signIn({ params, config: { ...settings?.config, ...config } }),
+    mutationFn: async ({ params, config }) =>
+      await signIn({ params, config: { ...settings?.config, ...config } }),
     ...settings?.options
   })
 }

@@ -1,14 +1,22 @@
-import { Link } from '@tanstack/react-router'
+import { Link, useLoaderData } from '@tanstack/react-router'
+import { lazy, Suspense } from 'react'
 import { FormattedMessage } from 'react-intl'
-import { useGetPopularSneakersQuery } from '@/shared/api/hooks/useGetPopularSneakersQuery'
 import { ROUTES } from '@/shared/constants/routes'
-import { Typography } from '@/shared/ui/common/Typography'
 import styles from './page.module.css'
 
+const BestSellersSection = lazy(() =>
+  import('./components/BestSellersSection').then(mod => ({
+    default: mod.BestSellersSection
+  }))
+)
+
 export function IndexPage() {
-  const popularSneakersRequest = useGetPopularSneakersQuery({ limit: '3' })
-  const mostPopularSneakers = popularSneakersRequest?.data?.data?.data
-  const mostPopularSneaker = mostPopularSneakers?.[0]
+  const { popularSneakers } = useLoaderData({
+    from: ROUTES.INDEX
+  }) as {
+    popularSneakers: SneakerItem[]
+  }
+  const mostPopularSneaker = popularSneakers?.[0]
 
   return (
     <>
@@ -47,42 +55,17 @@ export function IndexPage() {
                   </span>
                 )}
               </div>
-              <Link to="#" className={styles.addToCartBtn}>
+              <Link to={ROUTES.CATALOG} className={styles.addToCartBtn}>
                 <FormattedMessage id="featuredSneaker.addToCart" />
               </Link>
             </div>
           </div>
         )}
       </section>
-      {!!mostPopularSneakers && (
-        <section className={styles.bestSellersSection}>
-          <Typography tag="h2" variant="subtitle">
-            <FormattedMessage id="bestsellers.title" />
-          </Typography>
-          <div className={styles.bestSellersList}>
-            {mostPopularSneakers?.map(sneaker => (
-              <Link
-                to={ROUTES.CATALOG}
-                className={styles.bestSellerItem}
-                key={sneaker.id}
-                resetScroll={true}
-              >
-                <img
-                  src={sneaker.images[0]}
-                  className={styles.itemImage}
-                  loading="lazy"
-                />
-                <span className={styles.name}>{sneaker.name}</span>
-                <span className={styles.currentPrice}>
-                  {sneaker.finalPrice}$
-                </span>
-                {!!sneaker.hasActiveDiscount && (
-                  <span className={styles.originalPrice}>{sneaker.price}$</span>
-                )}
-              </Link>
-            ))}
-          </div>
-        </section>
+      {!!popularSneakers && (
+        <Suspense fallback={<div>Loading Best sellers...</div>}>
+          <BestSellersSection popularSneakers={popularSneakers} />
+        </Suspense>
       )}
     </>
   )

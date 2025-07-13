@@ -11,6 +11,9 @@ export default antfu(
       'antfu/if-newline': 'off',
       'react-hooks/exhaustive-deps': 'off',
 
+      'react-dom/no-flush-sync': 'off',
+      'react-hooks-extra/no-direct-set-state-in-use-effect': 'off',
+
       'jsdoc/check-alignment': 'off',
       'jsdoc/check-indentation': 'off',
       'jsdoc/check-param-names': 'off',

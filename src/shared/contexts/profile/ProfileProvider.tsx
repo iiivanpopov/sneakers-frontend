@@ -6,7 +6,7 @@ export interface ProfileProviderProps {
   defaultProfile?: User
 }
 
-export function ProfileProvider ({
+export function ProfileProvider({
   children,
   defaultProfile
 }: ProfileProviderProps) {

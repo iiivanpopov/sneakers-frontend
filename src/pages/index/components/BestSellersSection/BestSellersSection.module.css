@@ -1,0 +1,41 @@
+.best-sellers-section {
+  width: 100%;
+  display: flex;
+  padding: 0.75rem 3.25rem;
+  margin-bottom: 200px;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.best-sellers-list {
+  display: flex;
+  gap: 30px;
+}
+
+.best-seller-item {
+  padding: 20px;
+  width: 30vw;
+  border-radius: 10px;
+  background-color: var(--bg-secondary);
+  display: flex;
+  flex-direction: column;
+}
+
+.item-image {
+  width: 100%;
+  height: 500px;
+  object-fit: contain;
+}
+
+@media (width <= 1000px) {
+  .best-sellers-list {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .best-seller-item {
+    width: 100%;
+    margin-bottom: 50px;
+  }
+}

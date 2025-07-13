@@ -15,6 +15,25 @@
   margin-bottom: 30px;
 }
 
+.actions {
+  display: flex;
+  gap: 40px;
+}
+
+.submit {
+  height: 48px;
+}
+
+.fieldset {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
 .resend-code {
+  padding: 0;
+  align-items: center;
   width: fit-content;
+  display: flex;
+  flex-direction: column;
 }

@@ -15,30 +15,30 @@ api.interceptors.request.use(config => {
   return config
 })
 
-api.interceptors.response.use(undefined, async error => {
-  if (error.status === 401) {
-    const baseConfig = { ...error.config, _isRetry: false }
-    const refreshResponse = await axios.get<RefreshResponse>(
-      'https://localhost:4213/auth/refresh',
-      {
-        withCredentials: true
-      }
-    )
-    const accessToken = refreshResponse.data.accessToken
+api.interceptors.response.use(
+  response => response,
+  async error => {
+    const originalRequest = error.config
 
-    if (accessToken) {
-      localStorage.setItem(LOCAL_STORAGE.ACCESS_TOKEN, accessToken)
-      await axios.request({
-        ...baseConfig,
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-          _isRetry: true
+    if (error.response?.status === 401 && !originalRequest._isRetry) {
+      try {
+        const refreshResponse = await axios.get<{ accessToken: string }>(
+          'https://localhost:4213/auth/refresh',
+          { withCredentials: true }
+        )
+
+        const accessToken = refreshResponse.data.accessToken
+        if (accessToken) {
+          localStorage.setItem(LOCAL_STORAGE.ACCESS_TOKEN, accessToken)
+          originalRequest._isRetry = true
+          originalRequest.headers.Authorization = `Bearer ${accessToken}`
+          return api.request(originalRequest)
         }
-      })
+      } catch (refreshError) {
+        return Promise.reject(refreshError)
+      }
     }
 
-    return error
+    return Promise.reject(error)
   }
-
-  return error
-})
+)

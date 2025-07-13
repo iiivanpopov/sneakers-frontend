@@ -2,7 +2,7 @@ import { FormattedMessage } from 'react-intl'
 import innovationImage from '@/assets/img/innovation.webp'
 import qualityImage from '@/assets/img/quality.webp'
 import sustainabilityImage from '@/assets/img/sustainablity.webp'
-import { Typography } from '@/shared/ui/common/Typography'
+import { Typography } from '@/shared/ui/Typography'
 import styles from './page.module.css'
 
 export function AboutPage() {

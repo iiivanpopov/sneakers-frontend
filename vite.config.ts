@@ -1,6 +1,7 @@
 import path from 'node:path'
 import { tanstackRouter } from '@tanstack/router-plugin/vite'
 import react from '@vitejs/plugin-react-swc'
+import { visualizer } from 'rollup-plugin-visualizer'
 import { defineConfig } from 'vite'
 
 export default defineConfig({
@@ -10,7 +11,8 @@ export default defineConfig({
       autoCodeSplitting: true,
       routesDirectory: './src/app/routes'
     }),
-    react()
+    react(),
+    visualizer({ open: true })
   ],
   css: {
     modules: {
@@ -25,6 +27,17 @@ export default defineConfig({
       '@/shared': path.resolve(__dirname, 'src/shared'),
       '@/assets': path.resolve(__dirname, 'src/assets'),
       '@': path.resolve(__dirname, 'src')
+    }
+  },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          intl: ['react-intl'],
+          motion: ['framer-motion'],
+          router: ['@tanstack/react-router']
+        }
+      }
     }
   }
 })

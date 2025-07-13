@@ -1,14 +1,28 @@
-import { createRootRoute, Link, Outlet } from '@tanstack/react-router'
+import {
+  createRootRouteWithContext,
+  Link,
+  Outlet
+} from '@tanstack/react-router'
 import { ShoppingBasket as CartIcon, HeartIcon, SearchIcon } from 'lucide-react'
+import { lazy, Suspense } from 'react'
 import { FormattedMessage } from 'react-intl'
 import { ELEMENT_IDS } from '@/shared/constants/elementIds'
 import { ROUTES } from '@/shared/constants/routes'
 import { useI18n } from '@/shared/contexts/i18n'
 import { useSidebar } from '@/shared/contexts/sidebar/useSidebar'
-import { Sidebar } from '@/shared/ui/Sidebar'
 import styles from './__root.module.css'
 
-export const Route = createRootRoute({
+const LazySidebar = lazy(() =>
+  import('@/shared/ui/Sidebar').then(mod => ({
+    default: mod.Sidebar
+  }))
+)
+
+interface RouterContext {
+  isAuthenticated: boolean
+}
+
+export const Route = createRootRouteWithContext<RouterContext>()({
   component: RootComponent
 })
 
@@ -18,7 +32,9 @@ function RootComponent() {
 
   return (
     <>
-      <Sidebar />
+      <Suspense fallback={null}>
+        <LazySidebar />
+      </Suspense>
       <div className={styles.shippingBanner}>
         <span>
           <FormattedMessage id="header.freeShipping" />
@@ -88,13 +104,13 @@ function RootComponent() {
               <FormattedMessage id="footer.socials" />
             </div>
             <div className={styles.socialLinks}>
-              <Link target="_blank" to="https://www.instagram.com/">
+              <Link target="_blank" href="https://www.instagram.com/" to=".">
                 INST
               </Link>
-              <Link target="_blank" to="https://www.facebook.com/">
+              <Link target="_blank" href="https://www.facebook.com/" to=".">
                 FCB
               </Link>
-              <Link target="_blank" to="https://www.tiktok.com/">
+              <Link target="_blank" href="https://www.tiktok.com/" to=".">
                 TKTK
               </Link>
             </div>

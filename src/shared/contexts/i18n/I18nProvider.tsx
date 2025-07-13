@@ -1,30 +1,40 @@
 import type { Locale } from './I18nContext'
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { IntlProvider } from 'react-intl'
-import enMessages from '@/locales/en.json'
-import ukMessages from '@/locales/uk.json'
+
 import { LOCAL_STORAGE } from '@/shared/constants/localStorage'
 import { I18Context } from './I18nContext'
-
-const messages = {
-  en: enMessages,
-  uk: ukMessages
-}
 
 export interface I18nProviderProps {
   children: React.ReactNode
   defaultLocale: Locale
 }
 
+async function loadMessages(locale: Locale) {
+  switch (locale) {
+    case 'en':
+      return import('@/locales/en.json').then(m => m.default)
+    case 'uk':
+      return import('@/locales/uk.json').then(m => m.default)
+    default:
+      return import('@/locales/en.json').then(m => m.default)
+  }
+}
+
 export function I18nProvider({ children, defaultLocale }: I18nProviderProps) {
   const [locale, setLocale] = useState<Locale>(defaultLocale)
+  const [messages, setMessages] = useState<Record<string, string> | null>(null)
 
-  const setLocaleLocalStorage = (locale: Locale) => {
-    setLocale(locale)
-    localStorage.setItem(LOCAL_STORAGE.LANGUAGE, locale)
+  useEffect(() => {
+    loadMessages(locale).then(setMessages)
+  }, [locale])
+
+  const setLocaleLocalStorage = (nextLocale: Locale) => {
+    setLocale(nextLocale)
+    localStorage.setItem(LOCAL_STORAGE.LANGUAGE, nextLocale)
   }
 
-  const value = useMemo(
+  const contextValue = useMemo(
     () => ({
       locale,
       setLocale: setLocaleLocalStorage
@@ -32,9 +42,11 @@ export function I18nProvider({ children, defaultLocale }: I18nProviderProps) {
     [locale]
   )
 
+  if (!messages) return null
+
   return (
-    <I18Context value={value}>
-      <IntlProvider locale={locale} messages={messages[locale]}>
+    <I18Context value={contextValue}>
+      <IntlProvider locale={locale} messages={messages}>
         {children}
       </IntlProvider>
     </I18Context>
