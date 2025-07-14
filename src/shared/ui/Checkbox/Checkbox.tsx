@@ -1,21 +1,14 @@
 import type { Dispatch, ReactNode, SetStateAction } from 'react'
 import clsx from 'clsx'
-import React, {
-  createContext,
-  memo,
-  use,
-  useId,
-  useMemo,
-  useState
-} from 'react'
+import { createContext, memo, use, useMemo, useState } from 'react'
 import styles from './Checkbox.module.css'
 
 interface CheckboxContextProps {
   isChecked: boolean
   setIsChecked: Dispatch<SetStateAction<boolean>>
   onCheck?: (isChecked: boolean) => void
+  handleCheck?: () => void
   isDisabled: boolean
-  id: string
 }
 
 const CheckboxContext = createContext<CheckboxContextProps>(
@@ -28,68 +21,43 @@ interface CheckboxProviderProps {
   children: ReactNode
   onCheck?: (isChecked: boolean) => void
   defaultIsChecked?: boolean
-  checked?: boolean
   isDisabled?: boolean
 }
 
 function CheckboxProvider({
   defaultIsChecked,
-  checked,
   onCheck,
   children,
   isDisabled
 }: CheckboxProviderProps) {
-  const [internalIsChecked, setInternalIsChecked] = useState(
-    defaultIsChecked ?? false
-  )
-  const isControlled = checked !== undefined
-  const isChecked = isControlled ? checked : internalIsChecked
-  const id = useId()
+  const [isChecked, setIsChecked] = useState(defaultIsChecked ?? false)
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (isDisabled) return
-    const newChecked = e.target.checked
-    if (!isControlled) {
-      setInternalIsChecked(newChecked)
-    }
-    if (onCheck) {
-      onCheck(newChecked)
-    }
+  const handleCheck = () => {
+    if (onCheck) onCheck(!isChecked)
+    setIsChecked(!isChecked)
   }
 
   const value = useMemo(
     () => ({
       isChecked,
-      setIsChecked: isControlled ? () => {} : setInternalIsChecked,
+      setIsChecked,
       onCheck,
-      isDisabled: isDisabled ?? false,
-      id
+      handleCheck,
+      isDisabled: isDisabled ?? false
     }),
-    [isChecked, isControlled, id]
+    [isChecked, isDisabled]
   )
 
-  return (
-    <>
-      <input
-        type="checkbox"
-        id={id}
-        checked={isChecked}
-        onChange={handleChange}
-        disabled={isDisabled}
-        style={{ position: 'absolute', left: '-9999px' }}
-      />
-      <CheckboxContext value={value}>{children}</CheckboxContext>
-    </>
-  )
+  return <CheckboxContext value={value}>{children}</CheckboxContext>
 }
 
 const Label = memo(
   ({ children, className }: { children: ReactNode; className?: string }) => {
-    const { id, isDisabled } = useCheckbox()
+    const { isDisabled, handleCheck } = useCheckbox()
 
     return (
-      <label
-        htmlFor={id}
+      <span
+        onClick={handleCheck}
         className={clsx(
           styles.label,
           { [styles.labelDisabled]: isDisabled },
@@ -97,21 +65,22 @@ const Label = memo(
         )}
       >
         {children}
-      </label>
+      </span>
     )
   }
 )
 
 interface BoxProps {
   className?: string
+  children?: ReactNode
 }
 
-const Box = memo(({ className }: BoxProps) => {
-  const { isChecked, id, isDisabled } = useCheckbox()
+const Box = memo(({ className, children }: BoxProps) => {
+  const { isChecked, isDisabled, handleCheck } = useCheckbox()
 
   return (
-    <label
-      htmlFor={id}
+    <div
+      onClick={handleCheck}
       className={clsx(
         styles.box,
         {
@@ -122,15 +91,21 @@ const Box = memo(({ className }: BoxProps) => {
         className
       )}
     >
-      {isChecked && 'X'}
-    </label>
+      {children}
+    </div>
   )
 })
 
-interface CheckboxProps extends CheckboxProviderProps {}
+interface CheckboxProps extends CheckboxProviderProps {
+  className?: string
+}
 
-function Checkbox({ children, ...props }: CheckboxProps) {
-  return <CheckboxProvider {...props}>{children}</CheckboxProvider>
+function Checkbox({ children, className, ...props }: CheckboxProps) {
+  return (
+    <CheckboxProvider {...props}>
+      <div className={clsx(styles.checkbox, className)}>{children}</div>
+    </CheckboxProvider>
+  )
 }
 
 Checkbox.Label = Label
