@@ -8,6 +8,8 @@
   "bestsellers.title": "Best Sellers",
   "button.continue": "Continue",
   "button.menu": "Menu",
+  "button.next": "Next",
+  "button.previous": "Previous",
   "button.reset": "Reset",
   "button.resendCode": "Resend OTP",
   "button.search": "Search",
