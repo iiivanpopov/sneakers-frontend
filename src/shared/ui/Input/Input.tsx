@@ -3,24 +3,16 @@ import clsx from 'clsx'
 import { memo, useId } from 'react'
 import styles from './Input.module.css'
 
-type Tag = 'input' | 'textarea'
 type InputProps<T extends React.ElementType = 'input'> = {
   children?: React.ReactNode
-  tag?: Tag
+  tag?: T
   label?: string
   hint?: string
   error?: string
 } & React.ComponentPropsWithRef<T>
 
 export const Input = memo(
-  <T extends React.ElementType = 'input'>({
-    tag,
-    label,
-    hint,
-    className,
-    error,
-    ...props
-  }: InputProps<T>) => {
+  ({ tag, label, hint, className, error, ...props }: InputProps) => {
     const Component = tag || 'input'
     const id = useId()
 

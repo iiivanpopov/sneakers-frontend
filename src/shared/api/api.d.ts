@@ -116,10 +116,10 @@ interface SignInDto {
 interface GetSneakersDto {
   limit?: string
   offset?: string
-  brandName: string
-  hasDiscount: string
-  minPrice: string
-  maxPrice: string
+  brandName?: string
+  hasDiscount?: boolean
+  minPrice?: string
+  maxPrice?: string
 }
 
 interface SneakerItem {
