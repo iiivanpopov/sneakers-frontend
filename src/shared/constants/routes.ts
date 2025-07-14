@@ -4,9 +4,6 @@ export const ROUTES = {
   CATALOG: '/catalog',
   PROFILE: '/profile',
   ORDERS: '/orders',
-  ORDER: '/order',
-  DELIVERIES: '/deliveries',
-  FAVORED: '/favored',
   CART: '/cart',
   ABOUT: '/about'
 } as const

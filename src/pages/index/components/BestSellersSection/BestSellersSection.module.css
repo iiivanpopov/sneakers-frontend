@@ -12,6 +12,13 @@
   gap: 30px;
 }
 
+.original-price {
+  font-size: 1rem;
+  text-decoration: line-through;
+  font-weight: 400;
+  color: var(--text-tertiary);
+}
+
 .best-seller-item {
   padding: 20px;
   width: 30vw;

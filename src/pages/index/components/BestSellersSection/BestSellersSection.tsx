@@ -17,7 +17,7 @@ export function BestSellersSection({
         <FormattedMessage id="bestsellers.title" />
       </Typography>
       <div className={styles.bestSellersList}>
-        {popularSneakers?.map(sneaker => (
+        {popularSneakers.map(sneaker => (
           <Link
             to={ROUTES.CATALOG}
             className={styles.bestSellerItem}

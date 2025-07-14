@@ -6,9 +6,14 @@ import { ROUTES } from '@/shared/constants/routes'
 export const Route = createFileRoute(ROUTES.INDEX)({
   component: IndexPage,
   loader: async () => {
-    const response = await getPopularSneakers({ params: { limit: '3' } })
-    return {
-      popularSneakers: response.data?.data
+    try {
+      const response = await getPopularSneakers({ params: { limit: '3' } })
+      return {
+        popularSneakers: response.data?.data
+      }
+    } catch (error) {
+      console.error(error)
+      return { popularSneakers: [] }
     }
   }
 })

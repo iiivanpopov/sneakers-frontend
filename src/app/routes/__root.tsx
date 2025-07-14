@@ -9,6 +9,7 @@ import { FormattedMessage } from 'react-intl'
 import { ELEMENT_IDS } from '@/shared/constants/elementIds'
 import { ROUTES } from '@/shared/constants/routes'
 import { useI18n } from '@/shared/contexts/i18n'
+import { useProfile } from '@/shared/contexts/profile'
 import { useSidebar } from '@/shared/contexts/sidebar/useSidebar'
 import styles from './__root.module.css'
 
@@ -28,6 +29,7 @@ export const Route = createRootRouteWithContext<RouterContext>()({
 
 function RootComponent() {
   const { setIsOpen } = useSidebar()
+  const { profile } = useProfile()
   const { locale, setLocale } = useI18n()
 
   return (
@@ -60,12 +62,16 @@ function RootComponent() {
           <button type="button" className={styles.searchButton}>
             <SearchIcon />
           </button>
-          <Link to={ROUTES.FAVORED} className={styles.favoritesLink}>
-            <HeartIcon />
-          </Link>
-          <Link to={ROUTES.CART} className={styles.cartLink}>
-            <CartIcon />
-          </Link>
+          {!!profile?.email && (
+            <button type="button" className={styles.favoritesLink}>
+              <HeartIcon />
+            </button>
+          )}
+          {!!profile?.email && (
+            <Link to={ROUTES.CART} className={styles.cartLink}>
+              <CartIcon />
+            </Link>
+          )}
           <button
             className={styles.locale}
             type="button"
@@ -73,9 +79,11 @@ function RootComponent() {
           >
             {locale}
           </button>
-          <Link to={ROUTES.AUTH} className={styles.loginLink}>
-            <FormattedMessage id="button.signIn" />
-          </Link>
+          {!profile?.email && (
+            <Link to={ROUTES.AUTH} className={styles.loginLink}>
+              <FormattedMessage id="button.signIn" />
+            </Link>
+          )}
           <button
             type="button"
             id={ELEMENT_IDS.headerMenuButton}

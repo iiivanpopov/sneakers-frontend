@@ -15,15 +15,13 @@ import { Button } from '../Button'
 import styles from './Sidebar.module.css'
 
 const LINKS = [
-  { label: 'HOME', to: ROUTES.INDEX },
-  { label: 'ABOUT', to: ROUTES.ABOUT },
-  { label: 'SHOP', to: ROUTES.CATALOG },
-  { label: 'PROFILE', to: ROUTES.PROFILE },
-  { label: 'CART', to: ROUTES.CART },
-  { label: 'FAVORED', to: ROUTES.FAVORED },
-  { label: 'ORDERS', to: ROUTES.ORDERS },
-  { label: 'DELIVERIES', to: ROUTES.DELIVERIES },
-  { label: 'SIGN IN', to: ROUTES.AUTH }
+  { label: 'HOME', to: ROUTES.INDEX, authOnly: undefined },
+  { label: 'ABOUT', to: ROUTES.ABOUT, authOnly: undefined },
+  { label: 'SHOP', to: ROUTES.CATALOG, authOnly: undefined },
+  { label: 'PROFILE', to: ROUTES.PROFILE, authOnly: true },
+  { label: 'CART', to: ROUTES.CART, authOnly: true },
+  { label: 'ORDERS', to: ROUTES.ORDERS, authOnly: true },
+  { label: 'SIGN IN', to: ROUTES.AUTH, authOnly: false }
 ]
 
 export function Sidebar() {
@@ -39,13 +37,13 @@ export function Sidebar() {
     if (response.data.success) {
       localStorage.removeItem(LOCAL_STORAGE.ACCESS_TOKEN)
       setProfile({
-        city: '',
-        country: '',
         id: '',
         email: '',
         firstName: '',
         middleName: '',
         lastName: '',
+        country: '',
+        city: '',
         role: ''
       })
     }
@@ -73,6 +71,9 @@ export function Sidebar() {
 
   return (
     <m.div
+      initial={{
+        opacity: 0
+      }}
       animate={{
         opacity: isOpen ? 1 : 0,
         pointerEvents: isOpen ? 'auto' : 'none'
@@ -81,6 +82,9 @@ export function Sidebar() {
       className={styles.backdrop}
     >
       <m.div
+        initial={{
+          x: '100%'
+        }}
         animate={{ x: isOpen ? 0 : '100%' }}
         transition={{
           type: 'spring',
@@ -97,18 +101,27 @@ export function Sidebar() {
         >
           <PanelRightClose />
         </Button>
-        {LINKS.map(({ label, to }) => (
-          <Link
-            key={to}
-            to={to}
-            disabled={isCurrent(to)}
-            className={clsx(styles.link, {
-              [styles.linkDisabled]: isCurrent(to)
-            })}
-          >
-            <FormattedMessage id={`sidebar.link.${label}`} />
-          </Link>
-        ))}
+        {LINKS.map(({ label, to, authOnly }) => {
+          if (
+            (authOnly === false && profile?.email) ||
+            (authOnly === true && !profile?.email)
+          ) {
+            return null
+          }
+
+          return (
+            <Link
+              key={to}
+              to={to}
+              disabled={isCurrent(to)}
+              className={clsx(styles.link, {
+                [styles.linkDisabled]: isCurrent(to)
+              })}
+            >
+              <FormattedMessage id={`sidebar.link.${label}`} />
+            </Link>
+          )
+        })}
         {!!profile?.email && (
           <button type="button" className={styles.signOut} onClick={onLogout}>
             <FormattedMessage id="button.signOut" />

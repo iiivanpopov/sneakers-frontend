@@ -1,0 +1,260 @@
+.section {
+  height: 55rem;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-position: 50% 70%;
+  background-size: cover;
+  padding: 0.75rem 3.25rem;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 200px;
+  position: relative;
+}
+
+.title {
+  font-size: clamp(2.5rem, 4.5vw, 5.5rem);
+  color: var(--text-primary);
+  font-weight: 700;
+}
+
+.description {
+  color: var(--text-primary);
+  font-size: 1.25rem;
+  font-weight: 400;
+}
+
+.cta {
+  text-decoration: none;
+  padding: 0.75rem 1.25rem;
+  min-width: 8.75rem;
+  max-width: fit-content;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--indicator-attention);
+  background: var(--text-primary);
+  border-radius: 1.5rem;
+  font-weight: 600;
+  border: 1px solid transparent;
+  transition:
+    background-color 0.2s ease-in-out,
+    color 0.2s ease-in-out,
+    border-color 0.2s ease-in-out;
+}
+
+.cta:hover {
+  background: var(--text-invert);
+  color: var(--text-primary);
+  border-color: var(--text-primary);
+}
+
+.featured-sneaker-card {
+  position: absolute;
+  right: 3.25rem;
+  bottom: 2.5rem;
+  width: 35rem;
+  display: flex;
+  background-color: rgb(var(--bg-secondary-rgb), 0.5);
+  backdrop-filter: blur(15px);
+  border-radius: 1.5rem;
+  padding: 0.75rem;
+}
+
+.sale-badge {
+  position: absolute;
+  text-transform: uppercase;
+  top: 0.75rem;
+  left: 0.75rem;
+  background: var(--indicator-attention);
+  font-weight: 400;
+  font-size: 0.75rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+  color: var(--text-primary);
+  user-select: none;
+}
+
+.image-container {
+  position: relative;
+  width: 20rem;
+  height: 16.25rem;
+  background-color: rgb(var(--bg-secondary-rgb), 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 1.25rem;
+}
+
+.sneaker-image {
+  width: 12.5rem;
+  object-fit: contain;
+  user-select: none;
+}
+
+.details {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 0.75rem 1rem;
+  row-gap: 0.75rem;
+}
+
+.name {
+  color: var(--text-primary);
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.current-price {
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--text-secondary);
+}
+
+.original-price {
+  font-size: 1rem;
+  text-decoration: line-through;
+  font-weight: 400;
+  color: var(--text-tertiary);
+}
+
+.add-to-cart-btn {
+  text-decoration: none;
+  text-align: center;
+  text-transform: uppercase;
+  position: absolute;
+  bottom: 0.75rem;
+  color: var(--text-primary);
+  outline: none;
+  border: 1px solid var(--text-primary);
+  border-radius: 2.25rem;
+  font-weight: 600;
+  background: none;
+  width: 11rem;
+  padding: 0.75rem 2.25rem;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease-in-out,
+    color 0.2s ease-in-out;
+}
+
+.add-to-cart-btn:hover {
+  color: var(--indicator-attention);
+  background: var(--text-primary);
+}
+
+.price-info {
+  display: flex;
+  gap: 0.75rem;
+}
+
+@media (width <= 1000px) {
+  .title {
+    font-size: 4.375rem;
+  }
+
+  .featured-sneaker-card {
+    width: 30rem;
+    right: 2rem;
+  }
+
+  .image-container {
+    width: 18.75rem;
+    height: 15rem;
+  }
+
+  .sneaker-image {
+    width: 10rem;
+  }
+
+  .add-to-cart-btn {
+    width: 12rem;
+    padding: 0.5rem 1.5rem;
+  }
+}
+
+@media (width <= 800px) {
+  .title {
+    font-size: 3.125rem;
+  }
+
+  .section {
+    align-items: center;
+    padding: 1.25rem;
+    height: auto;
+  }
+
+  .featured-sneaker-card {
+    position: static;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 2rem;
+  }
+
+  .image-container {
+    width: 100%;
+    height: auto;
+    border-radius: 1rem;
+    padding: 1rem;
+  }
+
+  .sneaker-image {
+    width: 60%;
+  }
+
+  .details {
+    padding: 1rem;
+    position: static;
+  }
+
+  .add-to-cart-btn {
+    position: static;
+    align-self: flex-start;
+    margin-top: 1rem;
+  }
+}
+
+@media (width <= 600px) {
+  .title {
+    font-size: 2.25rem;
+  }
+
+  .description {
+    font-size: 1rem;
+  }
+
+  .hero-cta {
+    width: auto;
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+  }
+
+  .sneaker-image {
+    width: 80%;
+  }
+}
+
+@media (width <= 400px) {
+  .title {
+    font-size: 1.75rem;
+    text-align: center;
+  }
+
+  .description {
+    text-align: center;
+  }
+
+  .hero-cta {
+    display: block;
+    margin: 1rem auto 0;
+  }
+
+  .featured-sneaker-card {
+    padding: 1rem;
+  }
+
+  .name,
+  .current-price,
+  .original-price {
+    font-size: 1rem;
+  }
+}

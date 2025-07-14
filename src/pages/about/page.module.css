@@ -14,7 +14,6 @@
 .section-title {
   font-size: clamp(2.5rem, 4.5vw, 5.5rem);
   line-height: 1.2;
-  margin-bottom: 1rem;
 }
 
 .card-container {

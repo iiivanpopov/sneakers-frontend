@@ -12,64 +12,44 @@ import { createFileRoute } from '@tanstack/react-router'
 
 import { Route as rootRouteImport } from './app/routes/__root'
 import { Route as ProfileRouteImport } from './app/routes/profile'
+import { Route as OrdersRouteImport } from './app/routes/orders'
+import { Route as CartRouteImport } from './app/routes/cart'
+import { Route as AuthRouteImport } from './app/routes/auth'
+import { Route as AboutRouteImport } from './app/routes/about'
 import { Route as IndexRouteImport } from './app/routes/index'
 
-const OrdersLazyRouteImport = createFileRoute('/orders')()
-const OrderLazyRouteImport = createFileRoute('/order')()
-const FavoredLazyRouteImport = createFileRoute('/favored')()
-const DeliveriesLazyRouteImport = createFileRoute('/deliveries')()
 const CatalogLazyRouteImport = createFileRoute('/catalog')()
-const CartLazyRouteImport = createFileRoute('/cart')()
-const AuthLazyRouteImport = createFileRoute('/auth')()
-const AboutLazyRouteImport = createFileRoute('/about')()
 
-const OrdersLazyRoute = OrdersLazyRouteImport.update({
-  id: '/orders',
-  path: '/orders',
-  getParentRoute: () => rootRouteImport,
-} as any).lazy(() => import('./app/routes/orders.lazy').then((d) => d.Route))
-const OrderLazyRoute = OrderLazyRouteImport.update({
-  id: '/order',
-  path: '/order',
-  getParentRoute: () => rootRouteImport,
-} as any).lazy(() => import('./app/routes/order.lazy').then((d) => d.Route))
-const FavoredLazyRoute = FavoredLazyRouteImport.update({
-  id: '/favored',
-  path: '/favored',
-  getParentRoute: () => rootRouteImport,
-} as any).lazy(() => import('./app/routes/favored.lazy').then((d) => d.Route))
-const DeliveriesLazyRoute = DeliveriesLazyRouteImport.update({
-  id: '/deliveries',
-  path: '/deliveries',
-  getParentRoute: () => rootRouteImport,
-} as any).lazy(() =>
-  import('./app/routes/deliveries.lazy').then((d) => d.Route),
-)
 const CatalogLazyRoute = CatalogLazyRouteImport.update({
   id: '/catalog',
   path: '/catalog',
   getParentRoute: () => rootRouteImport,
 } as any).lazy(() => import('./app/routes/catalog.lazy').then((d) => d.Route))
-const CartLazyRoute = CartLazyRouteImport.update({
-  id: '/cart',
-  path: '/cart',
-  getParentRoute: () => rootRouteImport,
-} as any).lazy(() => import('./app/routes/cart.lazy').then((d) => d.Route))
-const AuthLazyRoute = AuthLazyRouteImport.update({
-  id: '/auth',
-  path: '/auth',
-  getParentRoute: () => rootRouteImport,
-} as any).lazy(() => import('./app/routes/auth.lazy').then((d) => d.Route))
-const AboutLazyRoute = AboutLazyRouteImport.update({
-  id: '/about',
-  path: '/about',
-  getParentRoute: () => rootRouteImport,
-} as any).lazy(() => import('./app/routes/about.lazy').then((d) => d.Route))
 const ProfileRoute = ProfileRouteImport.update({
   id: '/profile',
   path: '/profile',
   getParentRoute: () => rootRouteImport,
 } as any).lazy(() => import('./app/routes/profile.lazy').then((d) => d.Route))
+const OrdersRoute = OrdersRouteImport.update({
+  id: '/orders',
+  path: '/orders',
+  getParentRoute: () => rootRouteImport,
+} as any).lazy(() => import('./app/routes/orders.lazy').then((d) => d.Route))
+const CartRoute = CartRouteImport.update({
+  id: '/cart',
+  path: '/cart',
+  getParentRoute: () => rootRouteImport,
+} as any).lazy(() => import('./app/routes/cart.lazy').then((d) => d.Route))
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any).lazy(() => import('./app/routes/auth.lazy').then((d) => d.Route))
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -78,123 +58,67 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/auth': typeof AuthRoute
+  '/cart': typeof CartRoute
+  '/orders': typeof OrdersRoute
   '/profile': typeof ProfileRoute
-  '/about': typeof AboutLazyRoute
-  '/auth': typeof AuthLazyRoute
-  '/cart': typeof CartLazyRoute
   '/catalog': typeof CatalogLazyRoute
-  '/deliveries': typeof DeliveriesLazyRoute
-  '/favored': typeof FavoredLazyRoute
-  '/order': typeof OrderLazyRoute
-  '/orders': typeof OrdersLazyRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/auth': typeof AuthRoute
+  '/cart': typeof CartRoute
+  '/orders': typeof OrdersRoute
   '/profile': typeof ProfileRoute
-  '/about': typeof AboutLazyRoute
-  '/auth': typeof AuthLazyRoute
-  '/cart': typeof CartLazyRoute
   '/catalog': typeof CatalogLazyRoute
-  '/deliveries': typeof DeliveriesLazyRoute
-  '/favored': typeof FavoredLazyRoute
-  '/order': typeof OrderLazyRoute
-  '/orders': typeof OrdersLazyRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/auth': typeof AuthRoute
+  '/cart': typeof CartRoute
+  '/orders': typeof OrdersRoute
   '/profile': typeof ProfileRoute
-  '/about': typeof AboutLazyRoute
-  '/auth': typeof AuthLazyRoute
-  '/cart': typeof CartLazyRoute
   '/catalog': typeof CatalogLazyRoute
-  '/deliveries': typeof DeliveriesLazyRoute
-  '/favored': typeof FavoredLazyRoute
-  '/order': typeof OrderLazyRoute
-  '/orders': typeof OrdersLazyRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/profile'
     | '/about'
     | '/auth'
     | '/cart'
-    | '/catalog'
-    | '/deliveries'
-    | '/favored'
-    | '/order'
     | '/orders'
+    | '/profile'
+    | '/catalog'
   fileRoutesByTo: FileRoutesByTo
-  to:
-    | '/'
-    | '/profile'
-    | '/about'
-    | '/auth'
-    | '/cart'
-    | '/catalog'
-    | '/deliveries'
-    | '/favored'
-    | '/order'
-    | '/orders'
+  to: '/' | '/about' | '/auth' | '/cart' | '/orders' | '/profile' | '/catalog'
   id:
     | '__root__'
     | '/'
-    | '/profile'
     | '/about'
     | '/auth'
     | '/cart'
-    | '/catalog'
-    | '/deliveries'
-    | '/favored'
-    | '/order'
     | '/orders'
+    | '/profile'
+    | '/catalog'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
+  AuthRoute: typeof AuthRoute
+  CartRoute: typeof CartRoute
+  OrdersRoute: typeof OrdersRoute
   ProfileRoute: typeof ProfileRoute
-  AboutLazyRoute: typeof AboutLazyRoute
-  AuthLazyRoute: typeof AuthLazyRoute
-  CartLazyRoute: typeof CartLazyRoute
   CatalogLazyRoute: typeof CatalogLazyRoute
-  DeliveriesLazyRoute: typeof DeliveriesLazyRoute
-  FavoredLazyRoute: typeof FavoredLazyRoute
-  OrderLazyRoute: typeof OrderLazyRoute
-  OrdersLazyRoute: typeof OrdersLazyRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/orders': {
-      id: '/orders'
-      path: '/orders'
-      fullPath: '/orders'
-      preLoaderRoute: typeof OrdersLazyRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/order': {
-      id: '/order'
-      path: '/order'
-      fullPath: '/order'
-      preLoaderRoute: typeof OrderLazyRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/favored': {
-      id: '/favored'
-      path: '/favored'
-      fullPath: '/favored'
-      preLoaderRoute: typeof FavoredLazyRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/deliveries': {
-      id: '/deliveries'
-      path: '/deliveries'
-      fullPath: '/deliveries'
-      preLoaderRoute: typeof DeliveriesLazyRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/catalog': {
       id: '/catalog'
       path: '/catalog'
@@ -202,32 +126,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CatalogLazyRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/profile': {
+      id: '/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof ProfileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/orders': {
+      id: '/orders'
+      path: '/orders'
+      fullPath: '/orders'
+      preLoaderRoute: typeof OrdersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/cart': {
       id: '/cart'
       path: '/cart'
       fullPath: '/cart'
-      preLoaderRoute: typeof CartLazyRouteImport
+      preLoaderRoute: typeof CartRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/auth': {
       id: '/auth'
       path: '/auth'
       fullPath: '/auth'
-      preLoaderRoute: typeof AuthLazyRouteImport
+      preLoaderRoute: typeof AuthRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/about': {
       id: '/about'
       path: '/about'
       fullPath: '/about'
-      preLoaderRoute: typeof AboutLazyRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/profile': {
-      id: '/profile'
-      path: '/profile'
-      fullPath: '/profile'
-      preLoaderRoute: typeof ProfileRouteImport
+      preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -242,15 +173,12 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
+  AuthRoute: AuthRoute,
+  CartRoute: CartRoute,
+  OrdersRoute: OrdersRoute,
   ProfileRoute: ProfileRoute,
-  AboutLazyRoute: AboutLazyRoute,
-  AuthLazyRoute: AuthLazyRoute,
-  CartLazyRoute: CartLazyRoute,
   CatalogLazyRoute: CatalogLazyRoute,
-  DeliveriesLazyRoute: DeliveriesLazyRoute,
-  FavoredLazyRoute: FavoredLazyRoute,
-  OrderLazyRoute: OrderLazyRoute,
-  OrdersLazyRoute: OrdersLazyRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

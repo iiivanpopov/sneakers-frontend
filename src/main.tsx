@@ -24,7 +24,7 @@ export async function init() {
       defaultLocale: locale ?? 'en'
     },
     profile: {
-      defaultProfile: undefined
+      defaultProfile: undefined!
     }
   }
 

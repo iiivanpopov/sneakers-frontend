@@ -14,12 +14,6 @@ export default defineConfig({
     react(),
     visualizer({ open: true })
   ],
-  css: {
-    modules: {
-      localsConvention: 'camelCase',
-      generateScopedName: '[name]__[local]__[hash:base64:5]'
-    }
-  },
   resolve: {
     alias: {
       '@/app': path.resolve(__dirname, 'src/app'),
@@ -30,14 +24,32 @@ export default defineConfig({
     }
   },
   build: {
+    target: 'esnext',
+    outDir: 'dist',
+    sourcemap: false,
     rollupOptions: {
       output: {
-        manualChunks: {
-          intl: ['react-intl'],
-          motion: ['framer-motion'],
-          router: ['@tanstack/react-router']
-        }
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            if (id.includes('react') || id.includes('react-dom')) return 'react'
+            if (id.includes('@tanstack/react-router')) return 'tanstack-router'
+            if (id.includes('@tanstack/react-query')) return 'tanstack-query'
+            if (id.includes('framer-motion')) return 'framer'
+            if (id.includes('zod')) return 'zod'
+            return 'vendor'
+          }
+        },
+        chunkFileNames: 'chunks/[name]-[hash].js',
+        entryFileNames: 'entry/[name]-[hash].js',
+        assetFileNames: 'assets/[name]-[hash].[ext]'
       }
+    },
+    minify: 'terser'
+  },
+  css: {
+    modules: {
+      localsConvention: 'camelCase',
+      generateScopedName: '[local]-[hash]'
     }
   }
 })
