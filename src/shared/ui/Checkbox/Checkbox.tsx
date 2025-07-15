@@ -1,13 +1,13 @@
 import type { Dispatch, ReactNode, SetStateAction } from 'react'
 import clsx from 'clsx'
-import { createContext, memo, use, useMemo, useState } from 'react'
+import { createContext, memo, use, useCallback, useMemo, useState } from 'react'
 import styles from './Checkbox.module.css'
 
 interface CheckboxContextProps {
   isChecked: boolean
   setIsChecked: Dispatch<SetStateAction<boolean>>
   onCheck?: (isChecked: boolean) => void
-  handleCheck?: () => void
+  handleCheck: () => void
   isDisabled: boolean
 }
 
@@ -25,17 +25,19 @@ interface CheckboxProviderProps {
 }
 
 function CheckboxProvider({
-  defaultIsChecked,
+  defaultIsChecked = false,
   onCheck,
   children,
-  isDisabled
+  isDisabled = false
 }: CheckboxProviderProps) {
-  const [isChecked, setIsChecked] = useState(defaultIsChecked ?? false)
+  const [isChecked, setIsChecked] = useState(defaultIsChecked)
 
-  const handleCheck = () => {
-    if (onCheck) onCheck(!isChecked)
+  const handleCheck = useCallback(() => {
+    if (isDisabled) return
+
+    onCheck?.(!isChecked)
     setIsChecked(!isChecked)
-  }
+  }, [isDisabled, isChecked])
 
   const value = useMemo(
     () => ({
@@ -43,9 +45,9 @@ function CheckboxProvider({
       setIsChecked,
       onCheck,
       handleCheck,
-      isDisabled: isDisabled ?? false
+      isDisabled
     }),
-    [isChecked, isDisabled]
+    [isChecked, isDisabled, onCheck, handleCheck]
   )
 
   return <CheckboxContext value={value}>{children}</CheckboxContext>

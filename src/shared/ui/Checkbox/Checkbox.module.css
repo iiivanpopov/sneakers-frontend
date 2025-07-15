@@ -1,7 +1,6 @@
 .checkbox {
   align-items: center;
   display: flex;
-  width: 100px;
   gap: 8px;
 }
 
@@ -22,8 +21,8 @@
 }
 
 .inactive {
-  background: var(--text-quaternary);
-  color: var(--text-quaternary);
+  background: var(--text-tertiary);
+  color: var(--text-tertiary);
 }
 
 .disabled {

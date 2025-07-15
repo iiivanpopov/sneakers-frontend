@@ -33,6 +33,8 @@
   "label.country": "Країна",
   "label.email": "Електронна пошта",
   "label.firstName": "Ім'я",
+  "label.discount": "Знижка",
+  "label.filters": "Фільтри",
   "label.lastName": "Прізвище",
   "label.middleName": "По батькові",
   "label.otp": "Одноразовий пароль (OTP)",

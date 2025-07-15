@@ -32,6 +32,8 @@
   "label.city": "City",
   "label.country": "Country",
   "label.email": "Email",
+  "label.discount": "Discount",
+  "label.filters": "Filters",
   "label.firstName": "First Name",
   "label.lastName": "Last Name",
   "label.middleName": "Middle Name",
