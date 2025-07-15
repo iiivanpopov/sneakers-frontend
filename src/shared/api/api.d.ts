@@ -176,9 +176,20 @@ interface GetSneakerDto {
   slug: string
 }
 
+interface UpdateSneakerInCartDto {
+  slug: string
+  quantity: number
+}
+
+interface DeleteSneakerFromCartDto {
+  slug: string
+}
+
 interface GetSneakerResponse extends BaseResponse {
   data: SneakerItem
 }
+
+interface RemoveSneakerFromCartResponse extends BaseResponse {}
 
 interface GetSneakerStockDto {
   slug: string
@@ -196,3 +207,30 @@ interface StockItem {
 interface GetSneakerStockResponse extends BaseResponse {
   data: StockItem[]
 }
+
+interface GetFavoritesResponse extends BaseResponse {
+  data: SneakerItem[]
+}
+
+interface AddToFavoritesDto {
+  slug: string
+}
+
+interface RemoveToFavoritesDto {
+  slug: string
+}
+
+interface GetCartResponse extends BaseResponse {
+  data: SneakerItem[]
+}
+
+interface AddToCartDto {
+  stockId: string
+  quantity: number
+}
+
+interface AddToCartResponse extends BaseResponse {
+  data: SneakerItem[]
+}
+
+interface ClearCartResponse extends BaseResponse {}
