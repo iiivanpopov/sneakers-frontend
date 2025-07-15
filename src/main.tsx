@@ -31,12 +31,16 @@ export async function init() {
   const token = localStorage.getItem(LOCAL_STORAGE.ACCESS_TOKEN)
 
   if (token) {
-    const getProfileQuery = await queryClient.fetchQuery({
-      queryKey: ['profile'],
-      queryFn: () => getProfile()
-    })
+    try {
+      const getProfileQuery = await queryClient.fetchQuery({
+        queryKey: ['profile'],
+        queryFn: () => getProfile()
+      })
 
-    providersProps.profile.defaultProfile = getProfileQuery.data?.user
+      providersProps.profile.defaultProfile = getProfileQuery.data?.user
+    } catch (error) {
+      console.error(error)
+    }
   }
 
   root.render(

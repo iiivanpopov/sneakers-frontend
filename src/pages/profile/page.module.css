@@ -45,6 +45,13 @@
   }
 }
 
+.actions {
+  grid-column: span 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .submit {
   width: 15rem;
 
@@ -64,24 +71,21 @@
   .edit-form {
     grid-template-columns: 1fr 1fr;
   }
-
-  .submit {
-    grid-row-start: 3;
-  }
 }
 
 @media (width <= 900px) {
+  .profile {
+    padding: 0.5rem 0.25rem;
+    background-position: 60% 70%;
+  }
+
+  .actions {
+    grid-column: 1;
+  }
+
   .edit-form {
     justify-items: center;
     align-content: center;
     grid-template-columns: 1fr;
-  }
-
-  .profile {
-    background-position: 60% 70%;
-  }
-
-  .submit {
-    grid-row-start: 4;
   }
 }

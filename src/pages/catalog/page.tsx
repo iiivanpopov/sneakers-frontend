@@ -1,22 +1,16 @@
-import { Link, useLoaderData } from '@tanstack/react-router'
+import { Link } from '@tanstack/react-router'
 import clsx from 'clsx'
-import {
-  ArrowLeft,
-  ArrowRight,
-  HeartIcon,
-  ShoppingBasketIcon
-} from 'lucide-react'
+import { ArrowLeft, ArrowRight, HeartIcon } from 'lucide-react'
 import { FormattedMessage } from 'react-intl'
-import { ROUTES } from '@/shared/constants/routes'
+import { useProfile } from '@/shared/contexts/profile'
 import { Button, Typography } from '@/shared/ui'
 import { Filters } from './components/Filters'
-import { usePagination } from './hooks/usePagination'
+import { useCatalogPage } from './hooks/useCatalogPage'
 import styles from './page.module.css'
 
 export function CatalogPage() {
-  const { currentPage, nextPages, prevPages, next, prev, setPage } =
-    usePagination(ROUTES.CATALOG)
-  const { sneakers, brands } = useLoaderData({ from: ROUTES.CATALOG })
+  const { sneakers, brands, pagination, toggleFavorite } = useCatalogPage()
+  const { profile } = useProfile()
 
   return (
     <div className={styles.catalog}>
@@ -30,12 +24,15 @@ export function CatalogPage() {
         {sneakers.map(sneaker => (
           <div className={styles.sneakerCard} key={sneaker.id}>
             <div className={styles.actions}>
-              <Button variant="text">
-                <HeartIcon />
-              </Button>
-              <Button variant="text">
-                <ShoppingBasketIcon />
-              </Button>
+              {profile?.email && (
+                <Button onClick={() => toggleFavorite(sneaker)} variant="text">
+                  <HeartIcon
+                    className={clsx({
+                      [styles.favoriteActive]: sneaker.isFavored
+                    })}
+                  />
+                </Button>
+              )}
             </div>
             <img
               className={styles.sneakerImage}
@@ -68,36 +65,36 @@ export function CatalogPage() {
       </div>
       <div className={styles.pagination}>
         <Button
-          disabled={currentPage === 1}
-          onClick={prev}
+          disabled={pagination.currentPage === 1}
+          onClick={pagination.prev}
           className={styles.navigationButton}
         >
           <ArrowLeft />
         </Button>
         <div className={styles.pages}>
-          {prevPages.map(page => (
+          {pagination.prevPages.map(page => (
             <span
               key={page}
               className={styles.page}
-              onClick={() => setPage(page)}
+              onClick={() => pagination.setPage(page)}
             >
               {page}
             </span>
           ))}
           <span className={clsx(styles.page, styles.currentPage)}>
-            {currentPage}
+            {pagination.currentPage}
           </span>
-          {nextPages.map(page => (
+          {pagination.nextPages.map(page => (
             <span
               key={page}
               className={styles.page}
-              onClick={() => setPage(page)}
+              onClick={() => pagination.setPage(page)}
             >
               {page}
             </span>
           ))}
         </div>
-        <Button onClick={next} className={styles.navigationButton}>
+        <Button onClick={pagination.next} className={styles.navigationButton}>
           <ArrowRight />
         </Button>
       </div>

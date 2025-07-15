@@ -134,6 +134,7 @@ interface SneakerItem {
   purchases: number
   finalPrice: number
   hasActiveDiscount: boolean
+  isFavored: boolean
   discountSavings?: number
 }
 
@@ -189,7 +190,9 @@ interface GetSneakerResponse extends BaseResponse {
   data: SneakerItem
 }
 
-interface RemoveSneakerFromCartResponse extends BaseResponse {}
+interface RemoveSneakerFromCartResponse extends BaseResponse, SneakerItem {}
+interface RemoveFromFavoritesResponse extends BaseResponse, SneakerItem {}
+interface AddToFavoritesResponse extends BaseResponse, SneakerItem {}
 
 interface GetSneakerStockDto {
   slug: string
@@ -216,7 +219,7 @@ interface AddToFavoritesDto {
   slug: string
 }
 
-interface RemoveToFavoritesDto {
+interface RemoveFromFavoritesDto {
   slug: string
 }
 

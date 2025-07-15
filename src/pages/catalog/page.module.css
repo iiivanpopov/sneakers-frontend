@@ -97,6 +97,11 @@
   flex-direction: column;
 }
 
+.favorite-active {
+  color: var(--indicator-error);
+  fill: var(--indicator-error);
+}
+
 .sneaker-image {
   width: 100%;
   border-radius: 15px;

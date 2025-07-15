@@ -8,10 +8,14 @@ export async function addToFavorites({
   params,
   config
 }: AddToFavoritesRequestConfig) {
-  return api.post<BaseResponse>(`/favorites/${params.slug}`, undefined, config)
+  return api.post<AddToFavoritesResponse>(
+    `/favorites/${params.slug}`,
+    undefined,
+    config
+  )
 }
 
-export type RemoveFromFavoritesRequestParams = RemoveToFavoritesDto
+export type RemoveFromFavoritesRequestParams = RemoveFromFavoritesDto
 export type RemoveFromFavoritesRequestConfig =
   AxiosRequestConfig<RemoveFromFavoritesRequestParams>
 
@@ -19,5 +23,8 @@ export async function removeFromFavorites({
   params,
   config
 }: RemoveFromFavoritesRequestConfig) {
-  return api.delete<BaseResponse>(`/favorites/${params.slug}`, config)
+  return api.delete<RemoveFromFavoritesResponse>(
+    `/favorites/${params.slug}`,
+    config
+  )
 }
