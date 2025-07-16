@@ -5,6 +5,7 @@ import type { ProfileProviderProps } from '@/shared/contexts/profile'
 import type { QueryProviderProps } from '@/shared/contexts/query'
 import { domAnimation, LazyMotion } from 'framer-motion'
 import { lazy } from 'react'
+import { HelmetProvider } from 'react-helmet-async'
 import { CartProvider } from '@/shared/contexts/cart'
 import { FavoritesProvider } from '@/shared/contexts/favorites'
 import { I18nProvider } from '@/shared/contexts/i18n'
@@ -33,21 +34,23 @@ export function Providers({
   cart
 }: ProvidersProps) {
   return (
-    <I18nProvider {...locale}>
-      <ProfileProvider {...profile}>
-        <FavoritesProvider {...favorites}>
-          <CartProvider {...cart}>
-            <SidebarProvider>
-              <QueryProvider {...query}>
-                <LazyMotion features={domAnimation}>
-                  <LazyToaster />
-                  {children}
-                </LazyMotion>
-              </QueryProvider>
-            </SidebarProvider>
-          </CartProvider>
-        </FavoritesProvider>
-      </ProfileProvider>
-    </I18nProvider>
+    <HelmetProvider>
+      <I18nProvider {...locale}>
+        <ProfileProvider {...profile}>
+          <FavoritesProvider {...favorites}>
+            <CartProvider {...cart}>
+              <SidebarProvider>
+                <QueryProvider {...query}>
+                  <LazyMotion features={domAnimation}>
+                    <LazyToaster />
+                    {children}
+                  </LazyMotion>
+                </QueryProvider>
+              </SidebarProvider>
+            </CartProvider>
+          </FavoritesProvider>
+        </ProfileProvider>
+      </I18nProvider>
+    </HelmetProvider>
   )
 }
