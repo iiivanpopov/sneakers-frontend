@@ -8,9 +8,6 @@ export function usePagination(route: (typeof ROUTES)[keyof typeof ROUTES]) {
     from: route
   })
 
-  // TODO: goto last available page (COUNT(sneakers) / 10)
-  // TODO: goto first page
-
   const router = useRouter()
 
   if (!('page' in search)) {

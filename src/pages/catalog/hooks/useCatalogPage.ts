@@ -29,7 +29,7 @@ export function useCatalogPage() {
     }
   })
 
-  const toggleFavorite = (sneaker: SneakerItem) => {
+  const handleToggleFavorite = (sneaker: SneakerItem) => {
     if (sneaker.isFavored) {
       removeFromFavorite.mutate({
         params: {
@@ -56,6 +56,6 @@ export function useCatalogPage() {
       prev,
       setPage
     },
-    toggleFavorite
+    handleToggleFavorite
   }
 }

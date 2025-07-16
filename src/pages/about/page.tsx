@@ -35,7 +35,6 @@ export function AboutPage() {
               <FormattedMessage id="advantage.sustainability" />
             </div>
           </div>
-
           <div className={styles.advantageItem}>
             <img
               className={styles.itemImage}
@@ -46,7 +45,6 @@ export function AboutPage() {
               <FormattedMessage id="advantage.quality" />
             </div>
           </div>
-
           <div className={styles.advantageItem}>
             <img
               className={styles.itemImage}

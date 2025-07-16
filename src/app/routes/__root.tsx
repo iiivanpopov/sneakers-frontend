@@ -8,6 +8,8 @@ import { lazy, Suspense } from 'react'
 import { FormattedMessage } from 'react-intl'
 import { ELEMENT_IDS } from '@/shared/constants/elementIds'
 import { ROUTES } from '@/shared/constants/routes'
+import { useCart } from '@/shared/contexts/cart'
+import { useFavorites } from '@/shared/contexts/favorites'
 import { useI18n } from '@/shared/contexts/i18n'
 import { useProfile } from '@/shared/contexts/profile'
 import { useSidebar } from '@/shared/contexts/sidebar/useSidebar'
@@ -16,6 +18,18 @@ import styles from './__root.module.css'
 const LazySidebar = lazy(() =>
   import('@/shared/ui/Sidebar').then(mod => ({
     default: mod.Sidebar
+  }))
+)
+
+const LazyFavorites = lazy(() =>
+  import('@/shared/ui/Favorites').then(mod => ({
+    default: mod.Favorites
+  }))
+)
+
+const LazyCart = lazy(() =>
+  import('@/shared/ui/Cart').then(mod => ({
+    default: mod.Cart
   }))
 )
 
@@ -30,12 +44,20 @@ export const Route = createRootRouteWithContext<RouterContext>()({
 function RootComponent() {
   const { setIsOpen } = useSidebar()
   const { profile } = useProfile()
+  const { setIsOpened: setIsFavoritesOpen } = useFavorites()
+  const { setIsOpened: setIsCartOpen } = useCart()
   const { locale, setLocale } = useI18n()
 
   return (
     <>
       <Suspense fallback={null}>
         <LazySidebar />
+      </Suspense>
+      <Suspense fallback={null}>
+        <LazyFavorites />
+      </Suspense>
+      <Suspense fallback={null}>
+        <LazyCart />
       </Suspense>
       <div className={styles.shippingBanner}>
         <span>
@@ -59,18 +81,34 @@ function RootComponent() {
           Ryst.
         </Link>
         <div className={styles.headerActions}>
-          <button type="button" className={styles.searchButton}>
+          <button
+            type="button"
+            className={styles.searchButton}
+            aria-label="aria.search"
+          >
             <SearchIcon />
           </button>
           {!!profile?.email && (
-            <button type="button" className={styles.favoritesLink}>
+            <button
+              type="button"
+              id={ELEMENT_IDS.headerFavoritesButton}
+              onClick={() => setIsFavoritesOpen(true)}
+              className={styles.favoritesLink}
+              aria-label="aria.favorites"
+            >
               <HeartIcon />
             </button>
           )}
           {!!profile?.email && (
-            <Link to={ROUTES.CART} className={styles.cartLink}>
+            <button
+              type="button"
+              id={ELEMENT_IDS.headerCartButton}
+              onClick={() => setIsCartOpen(true)}
+              className={styles.cartLink}
+              aria-label="aria.cart"
+            >
               <CartIcon />
-            </Link>
+            </button>
           )}
           <button
             className={styles.locale}
@@ -89,6 +127,7 @@ function RootComponent() {
             id={ELEMENT_IDS.headerMenuButton}
             onClick={() => setIsOpen(true)}
             className={styles.menuButton}
+            aria-label="aria.menu"
           >
             <FormattedMessage id="button.menu" />
           </button>

@@ -9,7 +9,8 @@ import { useCatalogPage } from './hooks/useCatalogPage'
 import styles from './page.module.css'
 
 export function CatalogPage() {
-  const { sneakers, brands, pagination, toggleFavorite } = useCatalogPage()
+  const { sneakers, brands, pagination, handleToggleFavorite } =
+    useCatalogPage()
   const { profile } = useProfile()
 
   return (
@@ -25,7 +26,15 @@ export function CatalogPage() {
           <div className={styles.sneakerCard} key={sneaker.id}>
             <div className={styles.actions}>
               {profile?.email && (
-                <Button onClick={() => toggleFavorite(sneaker)} variant="text">
+                <Button
+                  onClick={() => handleToggleFavorite(sneaker)}
+                  variant="text"
+                  aria-label={
+                    sneaker.isFavored
+                      ? 'aria.removeFromFavorites'
+                      : 'aria.addToFavorites'
+                  }
+                >
                   <HeartIcon
                     className={clsx({
                       [styles.favoriteActive]: sneaker.isFavored
@@ -39,7 +48,7 @@ export function CatalogPage() {
               src={sneaker.images[0]}
               alt={sneaker.name}
             />
-            <Link to=".">
+            <Link to="/sneaker/$slug" params={{ slug: sneaker.slug }}>
               <Typography
                 className={styles.sneakerName}
                 tag="div"

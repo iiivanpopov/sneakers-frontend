@@ -19,7 +19,6 @@ const LINKS = [
   { label: 'ABOUT', to: ROUTES.ABOUT, authOnly: undefined },
   { label: 'SHOP', to: ROUTES.CATALOG, authOnly: undefined },
   { label: 'PROFILE', to: ROUTES.PROFILE, authOnly: true },
-  { label: 'CART', to: ROUTES.CART, authOnly: true },
   { label: 'ORDERS', to: ROUTES.ORDERS, authOnly: true },
   { label: 'SIGN IN', to: ROUTES.AUTH, authOnly: false }
 ]
@@ -98,6 +97,7 @@ export function Sidebar() {
           className={styles.closeSidebar}
           variant="text"
           onClick={() => setIsOpen(false)}
+          aria-label="aria.closeSidebar"
         >
           <PanelRightClose />
         </Button>

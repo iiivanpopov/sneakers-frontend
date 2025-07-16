@@ -16,5 +16,8 @@ export async function getSneakerStock({
   params,
   config
 }: GetSneakerStockRequestConfig) {
-  return api.get<GetSneakerStockDto>(`/sneakers/${params.slug}/stock`, config)
+  return api.get<GetSneakerStockResponse>(
+    `/sneakers/${params.slug}/stock`,
+    config
+  )
 }
