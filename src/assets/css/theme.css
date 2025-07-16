@@ -1,13 +1,13 @@
 :root {
   --bg-primary: #fff;
-  --bg-secondary-rgb: 240, 238, 244;
-  --bg-secondary: #e7e6eb;
-  --bg-tertiary: #d8d8dd;
+  --bg-secondary-rgb: 233, 232, 238;
+  --bg-secondary: #e9e8ee;
+  --bg-tertiary: #e4e4ea;
   --text-invert: #fff;
   --text-primary: #000;
-  --text-secondary: #0e1217;
-  --text-tertiary: #161a21;
-  --text-quaternary: #31353b;
+  --text-secondary: #11161c;
+  --text-tertiary: #191d23;
+  --text-quaternary: #3b3f46;
   --indicator-error: #f64c4c;
   --indicator-attention: #ffb219;
   --indicator-positive: #40bf7f;

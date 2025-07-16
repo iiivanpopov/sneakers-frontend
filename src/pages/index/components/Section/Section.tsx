@@ -45,8 +45,12 @@ export function Section({ sneaker, sectionName, className }: SectionProps) {
                 <span className={styles.originalPrice}>{sneaker.price}$</span>
               )}
             </div>
-            <Link to={ROUTES.CATALOG} className={styles.addToCartBtn}>
-              <FormattedMessage id="featuredSneaker.addToCart" />
+            <Link
+              to={ROUTES.SNEAKER}
+              params={{ slug: sneaker.slug }}
+              className={styles.addToCartBtn}
+            >
+              <FormattedMessage id="button.view" />
             </Link>
           </div>
         </div>

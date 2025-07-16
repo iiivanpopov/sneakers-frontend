@@ -129,7 +129,7 @@
   border-radius: 2.25rem;
   font-weight: 600;
   background: none;
-  width: 11rem;
+  width: 12rem !important;
   padding: 0.75rem 2.25rem;
   cursor: pointer;
   transition:

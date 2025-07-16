@@ -1,0 +1,172 @@
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 16px;
+  background-color: var(--bg-primary);
+}
+
+@media (width >= 640px) {
+  .container {
+    padding: 24px;
+  }
+}
+
+@media (width >= 1024px) {
+  .container {
+    padding: 32px;
+  }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+}
+
+@media (width >= 1024px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.image-wrapper {
+  position: relative;
+}
+
+.sneaker-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgb(var(--bg-secondary-rgb), 0.1);
+}
+
+.discount-badge {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  background-color: var(--indicator-error);
+  color: var(--text-invert);
+  font-size: 14px;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 9999px;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.title {
+  font-size: 30px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.brand {
+  color: var(--text-quaternary);
+}
+
+.price-container {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.final-price {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.original-price {
+  color: var(--text-quaternary);
+  text-decoration: line-through;
+}
+
+.description {
+  color: var(--text-secondary);
+}
+
+.button-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.favorite-active svg {
+  color: var(--indicator-error);
+  fill: var(--indicator-error);
+}
+
+.stats {
+  margin-top: 16px;
+}
+
+.status-text {
+  color: var(--text-quaternary);
+}
+
+.not-found {
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 18px;
+}
+
+.add-to-cart {
+  width: fit-content;
+}
+
+.favorite-button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0;
+}
+
+.stats-text {
+  display: flex;
+  gap: 20px;
+}
+
+.buttons {
+  display: flex;
+}
+
+.sizes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 48px);
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.size-button {
+  padding: 8px 0;
+  border: 1px solid var(--text-quaternary);
+  border-radius: 6px;
+  width: 48px;
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  font-size: 16px;
+  cursor: pointer;
+  transition:
+    border 0.2s,
+    background 0.2s;
+}
+
+.size-button:disabled {
+  opacity: 0.5;
+  border: 1px solid transparent;
+  cursor: not-allowed;
+  background: var(--bg-secondary);
+  color: var(--text-quaternary);
+}
+
+.size-button-active {
+  border: 1px solid var(--indicator-error);
+  background: var(--indicator-error);
+  color: var(--text-invert);
+}

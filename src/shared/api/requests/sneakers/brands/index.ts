@@ -5,5 +5,5 @@ export type GetSneakerBrandsRequestConfig = AxiosRequestConfig
 export async function getSneakerBrands({
   config
 }: GetSneakerBrandsRequestConfig) {
-  return api.get<GetSneakerBrandsResponse>(`/sneakers/brands`, config)
+  return api.get<GetSneakerBrandsResponse>(`/brands`, config)
 }

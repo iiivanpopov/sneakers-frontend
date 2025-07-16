@@ -3,7 +3,6 @@ import { FormattedMessage, useIntl } from 'react-intl'
 import { Button } from '@/shared/ui/Button'
 import { Input } from '@/shared/ui/Input'
 import { Typography } from '@/shared/ui/Typography'
-
 import { useFormatValidationError } from '../../shared/hooks/useFormatError'
 import { useProfilePage } from './hooks/useProfilePage'
 import styles from './page.module.css'

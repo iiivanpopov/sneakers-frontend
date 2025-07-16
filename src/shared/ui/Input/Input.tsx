@@ -3,26 +3,21 @@ import clsx from 'clsx'
 import { memo, useId } from 'react'
 import styles from './Input.module.css'
 
-type Tag = 'input' | 'textarea'
 type InputProps<T extends React.ElementType = 'input'> = {
   children?: React.ReactNode
-  tag?: Tag
+  tag?: T
   label?: string
   hint?: string
   error?: string
 } & React.ComponentPropsWithRef<T>
 
 export const Input = memo(
-  <T extends React.ElementType = 'input'>({
-    tag,
-    label,
-    hint,
-    className,
-    error,
-    ...props
-  }: InputProps<T>) => {
+  ({ tag, label, hint, className, error, ...props }: InputProps) => {
     const Component = tag || 'input'
     const id = useId()
+    const hintId = hint && !error ? `${id}-hint` : undefined
+    const errorId = error ? `${id}-error` : undefined
+    const ariaDescribedBy = error ? errorId : hintId
 
     return (
       <div className={styles.inputWrapper}>
@@ -36,10 +31,19 @@ export const Input = memo(
           className={clsx(styles.input, className, {
             [styles.inputError]: !!error
           })}
+          aria-describedby={ariaDescribedBy}
           {...props}
         />
-        {hint && !error && <span className={styles.hint}>{hint}</span>}
-        {error && <span className={styles.error}>{error}</span>}
+        {hint && !error && (
+          <span id={hintId} className={styles.hint}>
+            {hint}
+          </span>
+        )}
+        {error && (
+          <span id={errorId} className={styles.error}>
+            {error}
+          </span>
+        )}
       </div>
     )
   }

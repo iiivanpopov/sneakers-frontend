@@ -1,0 +1,37 @@
+.checkbox {
+  align-items: center;
+  display: flex;
+  gap: 8px;
+}
+
+.box {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.active {
+  background: var(--text-tertiary);
+  color: var(--text-invert);
+  font-weight: 600;
+}
+
+.inactive {
+  background: var(--text-tertiary);
+  color: var(--text-tertiary);
+}
+
+.disabled {
+  background: var(--text-quaternary);
+  color: var(--bg-tertiary);
+  cursor: auto;
+}
+
+.label {
+  font-size: 16px;
+  user-select: none;
+}

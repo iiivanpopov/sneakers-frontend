@@ -1,0 +1,62 @@
+.radiobox {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.box {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  background: var(--text-tertiary);
+  position: relative;
+
+  &[data-selected='true'] {
+    &::after {
+      content: '';
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background: var(--text-invert);
+    }
+  }
+}
+
+.disabled {
+  background: var(--text-quaternary);
+  cursor: auto;
+}
+
+.square {
+  border-radius: 5px;
+
+  &[data-selected='true'] {
+    &::after {
+      border-radius: 2px;
+    }
+  }
+}
+
+.circle {
+  border-radius: 50%;
+
+  &[data-selected='true'] {
+    &::after {
+      border-radius: 50%;
+    }
+  }
+}
+
+.label {
+  user-select: none;
+  font-size: 16px;
+}

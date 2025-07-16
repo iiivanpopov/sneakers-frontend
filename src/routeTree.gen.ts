@@ -8,23 +8,15 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-import { createFileRoute } from '@tanstack/react-router'
-
 import { Route as rootRouteImport } from './app/routes/__root'
 import { Route as ProfileRouteImport } from './app/routes/profile'
 import { Route as OrdersRouteImport } from './app/routes/orders'
-import { Route as CartRouteImport } from './app/routes/cart'
+import { Route as CatalogRouteImport } from './app/routes/catalog'
 import { Route as AuthRouteImport } from './app/routes/auth'
 import { Route as AboutRouteImport } from './app/routes/about'
 import { Route as IndexRouteImport } from './app/routes/index'
+import { Route as SneakerSlugRouteImport } from './app/routes/sneaker.$slug'
 
-const CatalogLazyRouteImport = createFileRoute('/catalog')()
-
-const CatalogLazyRoute = CatalogLazyRouteImport.update({
-  id: '/catalog',
-  path: '/catalog',
-  getParentRoute: () => rootRouteImport,
-} as any).lazy(() => import('./app/routes/catalog.lazy').then((d) => d.Route))
 const ProfileRoute = ProfileRouteImport.update({
   id: '/profile',
   path: '/profile',
@@ -35,11 +27,11 @@ const OrdersRoute = OrdersRouteImport.update({
   path: '/orders',
   getParentRoute: () => rootRouteImport,
 } as any).lazy(() => import('./app/routes/orders.lazy').then((d) => d.Route))
-const CartRoute = CartRouteImport.update({
-  id: '/cart',
-  path: '/cart',
+const CatalogRoute = CatalogRouteImport.update({
+  id: '/catalog',
+  path: '/catalog',
   getParentRoute: () => rootRouteImport,
-} as any).lazy(() => import('./app/routes/cart.lazy').then((d) => d.Route))
+} as any).lazy(() => import('./app/routes/catalog.lazy').then((d) => d.Route))
 const AuthRoute = AuthRouteImport.update({
   id: '/auth',
   path: '/auth',
@@ -55,34 +47,41 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SneakerSlugRoute = SneakerSlugRouteImport.update({
+  id: '/sneaker/$slug',
+  path: '/sneaker/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any).lazy(() =>
+  import('./app/routes/sneaker.$slug.lazy').then((d) => d.Route),
+)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/auth': typeof AuthRoute
-  '/cart': typeof CartRoute
+  '/catalog': typeof CatalogRoute
   '/orders': typeof OrdersRoute
   '/profile': typeof ProfileRoute
-  '/catalog': typeof CatalogLazyRoute
+  '/sneaker/$slug': typeof SneakerSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/auth': typeof AuthRoute
-  '/cart': typeof CartRoute
+  '/catalog': typeof CatalogRoute
   '/orders': typeof OrdersRoute
   '/profile': typeof ProfileRoute
-  '/catalog': typeof CatalogLazyRoute
+  '/sneaker/$slug': typeof SneakerSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/auth': typeof AuthRoute
-  '/cart': typeof CartRoute
+  '/catalog': typeof CatalogRoute
   '/orders': typeof OrdersRoute
   '/profile': typeof ProfileRoute
-  '/catalog': typeof CatalogLazyRoute
+  '/sneaker/$slug': typeof SneakerSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -90,42 +89,42 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/auth'
-    | '/cart'
+    | '/catalog'
     | '/orders'
     | '/profile'
-    | '/catalog'
+    | '/sneaker/$slug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/auth' | '/cart' | '/orders' | '/profile' | '/catalog'
+  to:
+    | '/'
+    | '/about'
+    | '/auth'
+    | '/catalog'
+    | '/orders'
+    | '/profile'
+    | '/sneaker/$slug'
   id:
     | '__root__'
     | '/'
     | '/about'
     | '/auth'
-    | '/cart'
+    | '/catalog'
     | '/orders'
     | '/profile'
-    | '/catalog'
+    | '/sneaker/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   AuthRoute: typeof AuthRoute
-  CartRoute: typeof CartRoute
+  CatalogRoute: typeof CatalogRoute
   OrdersRoute: typeof OrdersRoute
   ProfileRoute: typeof ProfileRoute
-  CatalogLazyRoute: typeof CatalogLazyRoute
+  SneakerSlugRoute: typeof SneakerSlugRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/catalog': {
-      id: '/catalog'
-      path: '/catalog'
-      fullPath: '/catalog'
-      preLoaderRoute: typeof CatalogLazyRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/profile': {
       id: '/profile'
       path: '/profile'
@@ -140,11 +139,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof OrdersRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/cart': {
-      id: '/cart'
-      path: '/cart'
-      fullPath: '/cart'
-      preLoaderRoute: typeof CartRouteImport
+    '/catalog': {
+      id: '/catalog'
+      path: '/catalog'
+      fullPath: '/catalog'
+      preLoaderRoute: typeof CatalogRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/auth': {
@@ -168,6 +167,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/sneaker/$slug': {
+      id: '/sneaker/$slug'
+      path: '/sneaker/$slug'
+      fullPath: '/sneaker/$slug'
+      preLoaderRoute: typeof SneakerSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -175,10 +181,10 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   AuthRoute: AuthRoute,
-  CartRoute: CartRoute,
+  CatalogRoute: CatalogRoute,
   OrdersRoute: OrdersRoute,
   ProfileRoute: ProfileRoute,
-  CatalogLazyRoute: CatalogLazyRoute,
+  SneakerSlugRoute: SneakerSlugRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
