@@ -12,6 +12,11 @@
   "button.menu": "Menu",
   "button.next": "Next",
   "button.previous": "Previous",
+  "button.remove": "Remove",
+  "button.clearCart": "Clear cart",
+  "button.createOrder": "Create Order",
+  "notification.orderCreated": "Order created successfully",
+  "notification.orderFailed": "Failed to create order",
   "discount.savings": "Save",
   "button.reset": "Reset",
   "button.resendCode": "Resend OTP",
@@ -79,5 +84,11 @@
   "aria.favorites": "Favorites",
   "aria.cart": "Cart",
   "aria.menu": "Open menu",
-  "aria.closeSidebar": "Close sidebar"
+  "aria.closeSidebar": "Close sidebar",
+  "notification.addedToCart": "Added to cart",
+  "notification.removedFromCart": "Removed from cart",
+  "notification.clearedCart": "Cart cleared",
+  "notification.addedToFavorites": "Added to favorites",
+  "notification.removedFromFavorites": "Removed from favorites",
+  "button.removing": "Removing..."
 }

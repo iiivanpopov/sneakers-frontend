@@ -57,3 +57,25 @@
   color: var(--text-quaternary);
   text-decoration: line-through;
 }
+
+.remove-button {
+  color: var(--danger);
+  margin-top: 16px;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.clear-button {
+  margin: 10px 0 10px auto;
+  display: block;
+  color: var(--danger);
+  background: none;
+  border: 1px solid var(--danger);
+  border-radius: 6px;
+  padding: 6px 16px;
+  cursor: pointer;
+  font-size: 14px;
+}

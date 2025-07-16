@@ -8,6 +8,7 @@ interface ModalListProps<T> {
   triggerButtonId: string
   modalClassName: string
   children: (item: T, index: number) => React.ReactNode
+  footer?: React.ReactNode
 }
 
 export function ModalList<T>({
@@ -16,7 +17,8 @@ export function ModalList<T>({
   setIsOpened,
   triggerButtonId,
   modalClassName,
-  children
+  children,
+  footer
 }: ModalListProps<T>) {
   const ref = useRef<HTMLDivElement>(null!)
   useClickOutside(ref, event => {
@@ -30,6 +32,7 @@ export function ModalList<T>({
   return (
     <div ref={ref} className={modalClassName}>
       {items.map((item, i) => children(item, i))}
+      {footer}
     </div>
   )
 }

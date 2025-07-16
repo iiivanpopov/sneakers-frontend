@@ -17,7 +17,7 @@ export async function updateSneakerInCart({
 
 export type RemoveSneakerFromCartRequestParams = DeleteSneakerFromCartDto
 export type RemoveSneakerFromCartRequestConfig =
-  AxiosRequestConfig<UpdateSneakerInCartRequestParams>
+  AxiosRequestConfig<RemoveSneakerFromCartRequestParams>
 
 export async function removeSneakerFromCart({
   params,

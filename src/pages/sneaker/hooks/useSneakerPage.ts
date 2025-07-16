@@ -3,13 +3,19 @@ import { Route } from '@/app/routes/sneaker.$slug'
 import { useAddToCartMutation } from '@/shared/api/hooks/useAddToCartMutation'
 import { useAddToFavoritesMutation } from '@/shared/api/hooks/useAddToFavoritesMutation'
 import { useGetCartQuery } from '@/shared/api/hooks/useGetCartQuery'
+import { useGetFavoritesQuery } from '@/shared/api/hooks/useGetFavoritesQuery'
 import { useGetSneakerStockQuery } from '@/shared/api/hooks/useGetSneakerStockQuery'
 import { useRemoveFromFavoritesMutation } from '@/shared/api/hooks/useRemoveFromFavoritesMutation'
+import { useCart } from '@/shared/contexts/cart'
+import { useFavorites } from '@/shared/contexts/favorites'
 
 export function useSneakerPage() {
   const sneaker = Route.useLoaderData()
   const [isFavored, setIsFavored] = useState(sneaker?.isFavored ?? false)
+  const cartCtx = useCart()
+  const favoritesCtx = useFavorites()
   const { refetch: refetchCart } = useGetCartQuery()
+  const { refetch: refetchFavorites } = useGetFavoritesQuery()
 
   const slug = sneaker?.slug
   const { data: stockData, isLoading: isStockLoading } =
@@ -29,19 +35,30 @@ export function useSneakerPage() {
 
   const addToFavorite = useAddToFavoritesMutation({
     options: {
-      onSuccess: () => setIsFavored(true),
+      onSuccess: async () => {
+        setIsFavored(true)
+        const { data } = await refetchFavorites()
+        if (data?.data?.data) favoritesCtx.setFavorites(data.data.data)
+      },
       onError: () => setIsFavored(false)
     }
   })
   const removeFromFavorite = useRemoveFromFavoritesMutation({
     options: {
-      onSuccess: () => setIsFavored(false),
+      onSuccess: async () => {
+        setIsFavored(false)
+        const { data } = await refetchFavorites()
+        if (data?.data?.data) favoritesCtx.setFavorites(data.data.data)
+      },
       onError: () => setIsFavored(true)
     }
   })
   const addToCart = useAddToCartMutation({
     options: {
-      onSuccess: () => refetchCart()
+      onSuccess: async () => {
+        const { data } = await refetchCart()
+        if (data?.data?.data) cartCtx.setCart(data.data.data)
+      }
     }
   })
 

@@ -16,6 +16,12 @@
   "button.signIn": "Увійти",
   "button.signOut": "Вийти",
   "button.submit": "Надіслати",
+  "button.remove": "Видалити",
+  "button.clearCart": "Очистити кошик",
+  "button.createOrder": "Оформити замовлення",
+  "button.removing": "Видалення...",
+  "notification.orderCreated": "Замовлення успішно створено",
+  "notification.orderFailed": "Не вдалося створити замовлення",
   "confirmOtp": "Підтвердити OTP",
   "featuredSneaker.addToCart": "Додати до кошика",
   "featuredSneaker.sale": "Розпродаж",
@@ -79,5 +85,10 @@
   "aria.favorites": "Улюблені",
   "aria.cart": "Кошик",
   "aria.menu": "Відкрити меню",
-  "aria.closeSidebar": "Закрити бічне меню"
+  "aria.closeSidebar": "Закрити бічне меню",
+  "notification.addedToCart": "Додано до кошика",
+  "notification.removedFromCart": "Видалено з кошика",
+  "notification.clearedCart": "Кошик очищено",
+  "notification.addedToFavorites": "Додано в улюблені",
+  "notification.removedFromFavorites": "Видалено з улюблених"
 }
